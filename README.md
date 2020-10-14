@@ -2,7 +2,7 @@
 
 This project implements a service that receives
 measurements from devices that monitor patients.
-It's part of a solution that provides care in an ICU.
+It's part of a solution that providescare in an ICU.
 
 It has two segments:
 
