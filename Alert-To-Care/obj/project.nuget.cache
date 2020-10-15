@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j3usd0nI220bB7ZEGDLaJnGYPcVcxsT+wRioegq3Yt17vX6S6alsUiI3KuE7gEWcYYvMp8X3mSjp1fSgUY7w4g==",
+  "dgSpecHash": "DZEqYLfzprs/KvmQUEuIA2Mnn3v27pLl9wYDE1bF+JT7dTb/X4rpkPuwIoFj/AzmRUZB8bHZXCuW55TUah0+IQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ekta\\source\\repos\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\Ekta\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.9\\microsoft.entityframeworkcore.design.3.1.9.nupkg.sha512",
     "C:\\Users\\Ekta\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.9\\microsoft.entityframeworkcore.relational.3.1.9.nupkg.sha512",
     "C:\\Users\\Ekta\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.9\\microsoft.entityframeworkcore.sqlserver.3.1.9.nupkg.sha512",
+    "C:\\Users\\Ekta\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.9\\microsoft.entityframeworkcore.tools.3.1.9.nupkg.sha512",
     "C:\\Users\\Ekta\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.9\\microsoft.extensions.caching.abstractions.3.1.9.nupkg.sha512",
     "C:\\Users\\Ekta\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.9\\microsoft.extensions.caching.memory.3.1.9.nupkg.sha512",
     "C:\\Users\\Ekta\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.9\\microsoft.extensions.configuration.3.1.9.nupkg.sha512",

@@ -19,18 +19,12 @@ namespace Alert_To_Care.Repository
 
         public void NewPatientAdd(PatientDataModel patient)
         {
-            _context.Patients.Add(patient);
-            _context.SaveChanges();
+            throw new NotImplementedException();
         }
 
         public void DischargePatient(int patientId)
         {
-            PatientDataModel patient = _context.Patients.Find(patientId);
-            if (patient != null)
-            {
-                _context.Patients.Remove(patient);
-                _context.SaveChanges();
-            }
+            throw new NotImplementedException();
         }
 
         public void AllotBedToPatient(PatientDataModel patient)

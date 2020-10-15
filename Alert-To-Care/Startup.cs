@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Alert_To_Care.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,7 @@ namespace Alert_To_Care
             services.AddDbContextPool<Alert_To_Care.Repository.Database>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("PatientDBConnection")));
             services.AddControllers();
+            services.AddScoped<IPatientDataRepository,PatientDataRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
