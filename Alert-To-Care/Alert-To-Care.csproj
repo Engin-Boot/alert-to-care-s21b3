@@ -5,5 +5,10 @@
     <RootNamespace>Alert_To_Care</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
 
 </Project>
