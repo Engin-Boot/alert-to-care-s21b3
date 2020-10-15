@@ -9,11 +9,10 @@ C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreap
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\Alert-To-Care.pdb
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.AssemblyInfoInputs.cache
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.AssemblyInfo.cs
-C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.csproj.CoreCompileInputs.cache
-C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.RazorTargetAssemblyInfo.cache
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\staticwebassets\Alert-To-Care.StaticWebAssets.Manifest.cache
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\staticwebassets\Alert-To-Care.StaticWebAssets.xml
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.dll
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.pdb
 C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.genruntimeconfig.cache
+C:\Users\Ekta\source\repos\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.csprojAssemblyReference.cache
