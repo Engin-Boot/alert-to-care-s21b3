@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alert_To_Care.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20201015141750_initiaMigrations")]
-    partial class initiaMigrations
+    [Migration("20201016143600_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,14 +25,8 @@ namespace Alert_To_Care.Migrations
                     b.Property<string>("BedId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("BedColumn")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BedRow")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BedStatus")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("BedStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("IcuDataModelIcuId")
                         .HasColumnType("nvarchar(450)");
@@ -40,8 +34,8 @@ namespace Alert_To_Care.Migrations
                     b.Property<string>("IcuId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BedId");
 
@@ -55,11 +49,8 @@ namespace Alert_To_Care.Migrations
                     b.Property<string>("IcuId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("NumberOfColumns")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfRows")
-                        .HasColumnType("int");
+                    b.Property<string>("Layout")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TotalNoOfBeds")
                         .HasColumnType("int");
@@ -71,32 +62,58 @@ namespace Alert_To_Care.Migrations
 
             modelBuilder.Entity("Alert_To_Care.Models.PatientDataModel", b =>
                 {
-                    b.Property<int>("PatientId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BedId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContactNo")
+                    b.Property<string>("BedId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ContactNo")
+                        .HasColumnType("int")
+                        .HasMaxLength(10);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PatientAge")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PatientAge")
+                        .HasColumnType("int");
 
                     b.Property<string>("PatientName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("vitalsPatientId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("PatientId");
 
+                    b.HasIndex("vitalsPatientId");
+
                     b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Alert_To_Care.Models.VitalsDataModel", b =>
+                {
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<float>("Bpm")
+                        .HasColumnType("real");
+
+                    b.Property<string>("PatientBedId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("RespRate")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Spo2")
+                        .HasColumnType("real");
+
+                    b.HasKey("PatientId");
+
+                    b.ToTable("VitalsDataModel");
                 });
 
             modelBuilder.Entity("Alert_To_Care.Models.BedDataModel", b =>
@@ -104,6 +121,13 @@ namespace Alert_To_Care.Migrations
                     b.HasOne("Alert_To_Care.Models.IcuDataModel", null)
                         .WithMany("IcuBedList")
                         .HasForeignKey("IcuDataModelIcuId");
+                });
+
+            modelBuilder.Entity("Alert_To_Care.Models.PatientDataModel", b =>
+                {
+                    b.HasOne("Alert_To_Care.Models.VitalsDataModel", "vitals")
+                        .WithMany()
+                        .HasForeignKey("vitalsPatientId");
                 });
 #pragma warning restore 612, 618
         }

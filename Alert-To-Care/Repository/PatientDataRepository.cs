@@ -15,9 +15,9 @@ namespace Alert_To_Care.Repository
         {
             _patientList = new List<PatientDataModel>()
             {
-                new PatientDataModel() { PatientId = 1, BedId = 22, PatientName = "Sneha", PatientAge = 31, ContactNo = 098765487, Address = "xyz street, abc colony", Email = "abc@123" },
-                new PatientDataModel() { PatientId = 2, BedId = 42, PatientName = "Priya", PatientAge = 49, ContactNo = 098766475, Address = "xyz street, abc colony", Email = "rfd@654" },
-                new PatientDataModel() { PatientId = 3, BedId = 90, PatientName = "Kaush", PatientAge = 56, ContactNo = 876345674, Address = "xyz street, abc colony", Email = "hgf@543" }
+                new PatientDataModel() { PatientId = "1", BedId = "22", PatientName = "Sneha", PatientAge = 31, ContactNo = 098765487, Address = "xyz street, abc colony", Email = "abc@123" },
+                new PatientDataModel() { PatientId = "2", BedId = "42", PatientName = "Priya", PatientAge = 49, ContactNo = 098766475, Address = "xyz street, abc colony", Email = "rfd@654" },
+                new PatientDataModel() { PatientId = "3", BedId = "90", PatientName = "Kaush", PatientAge = 56, ContactNo = 876345674, Address = "xyz street, abc colony", Email = "hgf@543" }
             };
 
          }
@@ -31,7 +31,7 @@ namespace Alert_To_Care.Repository
 
         public PatientDataModel DischargePatient(int _patientId)
         {
-            PatientDataModel patient = _patientList.FirstOrDefault(e => e.PatientId == _patientId);
+            PatientDataModel patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, _patientId));
             if (patient != null)
             {
                 _patientList.Remove(patient);
@@ -42,7 +42,7 @@ namespace Alert_To_Care.Repository
 
         public PatientDataModel PatientInfoFromPatientId(int _patientId)
         {
-            PatientDataModel _patient = _patientList.FirstOrDefault(e => e.PatientId == _patientId);
+            PatientDataModel _patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId,_patientId));
             if (_patient != null)
             {
                 return _patient;
@@ -59,8 +59,9 @@ namespace Alert_To_Care.Repository
             throw new NotImplementedException();
         }
 
-        public BedDataModel BedInfoFromPatientId(int patientId)
-        {
+        public BedDataModel BedInfoFromPatientId(int _patientId)
+        { 
+
             throw new NotImplementedException();
         }
 

@@ -12,7 +12,7 @@ namespace Alert_To_Care.Models
         [Key]
         public string BedId { get; set; }
         public bool BedStatus { get; set; }
-        public int PatientId { get; set; }
+        public string PatientId { get; set; }
         public string IcuId { get; set; }
        
     }

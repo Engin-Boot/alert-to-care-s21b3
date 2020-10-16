@@ -26,11 +26,11 @@ namespace Alert_To_Care.Migrations
                 name: "VitalsDataModel",
                 newName: "Patients1");
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<string>(
                 name: "PatientDataModelPatientId",
                 table: "Patients1",
                 nullable: false,
-                defaultValue: 0);
+                defaultValue: "");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Patients1",
@@ -40,12 +40,12 @@ namespace Alert_To_Care.Migrations
             migrationBuilder.InsertData(
                 table: "Patients",
                 columns: new[] { "PatientId", "Address", "BedId", "ContactNo", "Email", "PatientAge", "PatientName" },
-                values: new object[] { 1, "abc stress, swe city", 22, 987655398, "123@abc.com", 22, "Sneha" });
+                values: new object[] { "1", "abc street, swe city", "12", 987655398, "123@abc.com", 22, "Sneha" });
 
             migrationBuilder.InsertData(
                 table: "Patients1",
                 columns: new[] { "PatientId", "Bpm", "PatientBedId", "PatientDataModelPatientId", "RespRate", "Spo2" },
-                values: new object[] { 1, 70f, 22, 1, 66f, 90f });
+                values: new object[] { "1", 70f, "12", "1", 66f, 90f });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Patients1_PatientDataModelPatientId",
@@ -79,12 +79,12 @@ namespace Alert_To_Care.Migrations
             migrationBuilder.DeleteData(
                 table: "Patients1",
                 keyColumn: "PatientId",
-                keyValue: 1);
+                keyValue: "1");
 
             migrationBuilder.DeleteData(
                 table: "Patients",
                 keyColumn: "PatientId",
-                keyValue: 1);
+                keyValue: "1");
 
             migrationBuilder.DropColumn(
                 name: "PatientDataModelPatientId",
@@ -94,10 +94,10 @@ namespace Alert_To_Care.Migrations
                 name: "Patients1",
                 newName: "VitalsDataModel");
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AddColumn<string>(
                 name: "vitalsPatientId",
                 table: "Patients",
-                type: "int",
+                type: "nvarchar(450)",
                 nullable: true);
 
             migrationBuilder.AddPrimaryKey(

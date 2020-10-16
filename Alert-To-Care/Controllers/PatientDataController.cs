@@ -38,7 +38,7 @@ namespace Alert_To_Care.Controllers
                 PatientDataModel _patient = default(PatientDataModel);
                 foreach (PatientDataModel _patientTemp in _patientdatabase.GetAllPatients())
                 {
-                    if (_patientTemp.PatientId == id)
+                    if (String.Equals(_patientTemp.PatientId,id))
                     {
                         _patient = _patientTemp;
                         break;

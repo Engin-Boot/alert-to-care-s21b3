@@ -32,8 +32,8 @@ namespace Alert_To_Care.Migrations
                     b.Property<string>("IcuId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BedId");
 
@@ -60,19 +60,18 @@ namespace Alert_To_Care.Migrations
 
             modelBuilder.Entity("Alert_To_Care.Models.PatientDataModel", b =>
                 {
-                    b.Property<int>("PatientId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BedId")
-                        .HasColumnType("int");
+                    b.Property<string>("BedId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ContactNo")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(10);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -90,9 +89,9 @@ namespace Alert_To_Care.Migrations
                     b.HasData(
                         new
                         {
-                            PatientId = 1,
-                            Address = "abc stress, swe city",
-                            BedId = 22,
+                            PatientId = "1",
+                            Address = "abc street, swe city",
+                            BedId = "12",
                             ContactNo = 987655398,
                             Email = "123@abc.com",
                             PatientAge = 22,
@@ -111,19 +110,18 @@ namespace Alert_To_Care.Migrations
                 {
                     b.OwnsOne("Alert_To_Care.Models.VitalsDataModel", "vitals", b1 =>
                         {
-                            b1.Property<int>("PatientId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                            b1.Property<string>("PatientId")
+                                .HasColumnType("nvarchar(450)");
 
                             b1.Property<float>("Bpm")
                                 .HasColumnType("real");
 
-                            b1.Property<int>("PatientBedId")
-                                .HasColumnType("int");
+                            b1.Property<string>("PatientBedId")
+                                .HasColumnType("nvarchar(max)");
 
-                            b1.Property<int>("PatientDataModelPatientId")
-                                .HasColumnType("int");
+                            b1.Property<string>("PatientDataModelPatientId")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(450)");
 
                             b1.Property<float>("RespRate")
                                 .HasColumnType("real");
@@ -144,10 +142,10 @@ namespace Alert_To_Care.Migrations
                             b1.HasData(
                                 new
                                 {
-                                    PatientId = 1,
+                                    PatientId = "1",
                                     Bpm = 70f,
-                                    PatientBedId = 22,
-                                    PatientDataModelPatientId = 1,
+                                    PatientBedId = "12",
+                                    PatientDataModelPatientId = "1",
                                     RespRate = 66f,
                                     Spo2 = 90f
                                 });

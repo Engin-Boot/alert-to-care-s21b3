@@ -11,8 +11,8 @@ namespace Alert_To_Care.Models
     {
         [Key]
         
-        public int PatientId { get; set; }
-        public int PatientBedId { get; set; }
+        public string PatientId { get; set; }
+        public string PatientBedId { get; set; }
         public float Bpm { get; set; }
         public float Spo2 { get; set; }
         public float RespRate { get; set; }

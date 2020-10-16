@@ -23,9 +23,8 @@ namespace Alert_To_Care.Migrations
                 name: "VitalsDataModel",
                 columns: table => new
                 {
-                    PatientId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PatientBedId = table.Column<int>(nullable: false),
+                    PatientId = table.Column<string>(nullable: false),
+                    PatientBedId = table.Column<string>(nullable: true),
                     Bpm = table.Column<float>(nullable: false),
                     Spo2 = table.Column<float>(nullable: false),
                     RespRate = table.Column<float>(nullable: false)
@@ -41,7 +40,7 @@ namespace Alert_To_Care.Migrations
                 {
                     BedId = table.Column<string>(nullable: false),
                     BedStatus = table.Column<bool>(nullable: false),
-                    PatientId = table.Column<int>(nullable: false),
+                    PatientId = table.Column<string>(nullable: true),
                     IcuId = table.Column<string>(nullable: true),
                     IcuDataModelIcuId = table.Column<string>(nullable: true)
                 },
@@ -60,15 +59,14 @@ namespace Alert_To_Care.Migrations
                 name: "Patients",
                 columns: table => new
                 {
-                    PatientId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BedId = table.Column<int>(nullable: false),
+                    PatientId = table.Column<string>(nullable: false),
+                    BedId = table.Column<string>(nullable: true),
                     PatientName = table.Column<string>(nullable: true),
                     PatientAge = table.Column<int>(nullable: false),
                     Email = table.Column<string>(nullable: true),
-                    ContactNo = table.Column<int>(nullable: false),
+                    ContactNo = table.Column<int>(maxLength: 10, nullable: false),
                     Address = table.Column<string>(nullable: true),
-                    vitalsPatientId = table.Column<int>(nullable: true)
+                    vitalsPatientId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

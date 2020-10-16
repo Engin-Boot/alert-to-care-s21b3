@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace Alert_To_Care.SQLRepository
 {
@@ -45,9 +45,18 @@ namespace Alert_To_Care.SQLRepository
             return _context.Patients;
         }
 
-        public PatientDataModel PatientInfoFromPatientId(int patientId)
+        public PatientDataModel PatientInfoFromPatientId(int _patientId)
         {
+            //var query = (from patient in _context.Patients
+            //             join
+            //                 bed in _context.Beds on
+            //                 patient.PatientId equals bed.PatientId
+            //             where bed.BedId == patient.BedId
+            //             select patient);
+            //var finalPatient = query.FirstOrDefault();
+            //return finalPatient;
             throw new NotImplementedException();
+
         }
 
         public BedDataModel BedInfoFromPatientId(int patientId)

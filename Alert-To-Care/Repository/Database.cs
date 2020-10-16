@@ -22,31 +22,31 @@ namespace Alert_To_Care.Repository
         {
             modelBuilder.Entity<PatientDataModel>(b =>
             {
-                b.HasData(new 
+                b.HasData(new
                 {
-                    PatientId = 1,
+                    PatientId = "1",
                     PatientAge = 22,
                     PatientName = "Sneha",
-                    BedId = 22,
-                    Address = "abc stress, swe city",
+                    BedId = "12",
+                    Address = "abc street, swe city",
                     ContactNo = 0987655398,
                     Email = "123@abc.com"
 
                 });
 
-                b.OwnsOne(e => e.vitals).HasData(new 
+                b.OwnsOne(e => e.vitals).HasData(new
                 {
-                    PatientDataModelPatientId = 1,
-                    PatientId = 1,
-                    PatientBedId = 22,
+                    PatientDataModelPatientId = "1",
+                    PatientId = "1",
+                    PatientBedId = "12",
                     Bpm = 70f,
                     Spo2 = 90f,
                     RespRate = 66f
                 });
             });
-        
+
         }
-        
+
     }
  
 }
