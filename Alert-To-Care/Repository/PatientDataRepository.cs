@@ -9,36 +9,52 @@ namespace Alert_To_Care.Repository
 {
     public class PatientDataRepository:IPatientDataRepository
     {
-        private readonly Database _context;
+        private List<PatientDataModel> _patientList;
 
-        public PatientDataRepository(Database context)
+        public PatientDataRepository()
         {
-            _context = context;
+            _patientList = new List<PatientDataModel>()
+            {
+                new PatientDataModel() { PatientId = 1, BedId = 22, PatientName = "Sneha", PatientAge = 31, ContactNo = 098765487, Address = "xyz street, abc colony", Email = "abc@123" },
+                new PatientDataModel() { PatientId = 2, BedId = 42, PatientName = "Priya", PatientAge = 49, ContactNo = 098766475, Address = "xyz street, abc colony", Email = "rfd@654" },
+                new PatientDataModel() { PatientId = 3, BedId = 90, PatientName = "Kaush", PatientAge = 56, ContactNo = 876345674, Address = "xyz street, abc colony", Email = "hgf@543" }
+            };
+
+         }
+        public PatientDataModel NewPatientAdd(PatientDataModel patient)
+        {
+            patient.PatientId = _patientList.Max(e => e.PatientId + 1);
+            _patientList.Add(patient);
+            return patient;
+            //throw new NotImplementedException();
         }
 
-
-        public void NewPatientAdd(PatientDataModel patient)
+        public PatientDataModel DischargePatient(int _patientId)
         {
-            _context.Patients.Add(patient);
-            _context.SaveChanges();
-        }
-
-        public void DischargePatient(int patientId)
-        {
-            PatientDataModel patient = _context.Patients.Find(patientId);
+            PatientDataModel patient = _patientList.FirstOrDefault(e => e.PatientId == _patientId);
             if (patient != null)
             {
-                _context.Patients.Remove(patient);
-                _context.SaveChanges();
+                _patientList.Remove(patient);
             }
+            return patient;
+            //throw new NotImplementedException();
         }
 
-        public void AllotBedToPatient(PatientDataModel patient)
+        public PatientDataModel PatientInfoFromPatientId(int _patientId)
         {
+            PatientDataModel _patient = _patientList.FirstOrDefault(e => e.PatientId == _patientId);
+            if (_patient != null)
+            {
+                return _patient;
+            }
+            
             throw new NotImplementedException();
         }
-
-        public PatientDataModel PatientInfoFromPatientId(int patientId)
+        public IEnumerable<PatientDataModel> GetAllPatients()
+        {
+            return _patientList;
+        }
+        public void AllotBedToPatient(PatientDataModel patient)
         {
             throw new NotImplementedException();
         }
@@ -47,5 +63,6 @@ namespace Alert_To_Care.Repository
         {
             throw new NotImplementedException();
         }
+
     }
 }

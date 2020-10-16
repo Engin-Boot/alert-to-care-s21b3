@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Alert_To_Care.Repository;
+using Alert_To_Care.SQLRepository;
 
 namespace Alert_To_Care
 {
@@ -29,19 +31,20 @@ namespace Alert_To_Care
             services.AddDbContextPool<Alert_To_Care.Repository.Database>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("PatientDBConnection")));
             services.AddControllers();
+            services.AddTransient<IPatientDataRepository, SQLPatientDataRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
