@@ -21,36 +21,54 @@ namespace Alert_To_Care.Controllers
 
         // GET: api/<IcuDataController>
         [HttpGet]
-        public IEnumerable<IcuDataModel> Get()
+        public IActionResult Get()
         {
-            return _icudatabase.GetAllIcu();
+            IEnumerable<IcuDataModel> result = _icudatabase.GetAllIcu();
+            if ( result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
         }
 
         // GET api/<IcuDataController>/5
         [HttpGet("{id}")]
-        public IcuDataModel Get(string id)
+        public IActionResult Get(string id)
         {
             IcuDataModel _icu = _icudatabase.GetIcuDetailsById(id);
-            return _icu;
+            if(_icu != null)
+            {
+                return Ok(_icu);
+            }
+            return BadRequest();
         }
 
         [HttpGet]
         [Route("[action]/{id}")]        
-        public string GetLayout(string id)
+        public IActionResult GetLayout(string id)
         {
             IcuDataModel _icu = _icudatabase.GetIcuDetailsById(id);
-            string layout = _icu.Layout;
-            return layout;
+            if(_icu != null)
+            {
+                string layout = _icu.Layout;
+                return Ok(layout);
+
+            }
+            return BadRequest();
+            
 
         }
         [HttpGet]
         [Route("[action]/{id}")]
-        public int GetBeds(string id)
+        public IActionResult GetBeds(string id)
         {
             IcuDataModel _icu = _icudatabase.GetIcuDetailsById(id);
-            int bedNo = _icu.TotalNoOfBeds;
-            return bedNo;
-
+            if (_icu != null)
+            {
+                int bedNo = _icu.TotalNoOfBeds;
+                return Ok(bedNo);
+            }
+            return BadRequest();
         }
         
 
@@ -58,25 +76,36 @@ namespace Alert_To_Care.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] IcuDataModel icu)
         {
-             _icudatabase.AddIcu(icu);
-              return Ok();
-            
+            if(icu != null)
+            {
+                var result = _icudatabase.AddIcu(icu);
+                return Ok(result);
+            }
+
+            return BadRequest();
         }
 
         // DELETE api/<IcuDataController>/5
         [HttpDelete("{id}")]
-        public IcuDataModel Delete(string id)
+        public IActionResult Delete(string id)
         {
             IcuDataModel _icu=_icudatabase.RemoveIcu(id);
-            return _icu;
+            if(_icu != null)
+            {
+                return Ok(_icu);
+            }
+            return BadRequest();
         }
 
 
 
         // PUT api/<IcuDataController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+        public IActionResult Put(string id, [FromBody] IcuDataModel _icuDetailsChanges)
+        { 
+                    _icuDetailsChanges.IcuId = id;
+                var result = _icudatabase.UpdateIcu(_icuDetailsChanges);
+                    return Ok(result);
         }
 
         

@@ -35,6 +35,15 @@ namespace Alert_To_Care.Migrations
                     b.HasKey("BedId");
 
                     b.ToTable("Beds");
+
+                    b.HasData(
+                        new
+                        {
+                            BedId = "20",
+                            BedStatus = true,
+                            IcuId = "34",
+                            PatientId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Alert_To_Care.Models.IcuDataModel", b =>
@@ -51,6 +60,20 @@ namespace Alert_To_Care.Migrations
                     b.HasKey("IcuId");
 
                     b.ToTable("Icu");
+
+                    b.HasData(
+                        new
+                        {
+                            IcuId = "1",
+                            Layout = "L",
+                            TotalNoOfBeds = 3
+                        },
+                        new
+                        {
+                            IcuId = "2",
+                            Layout = "Sq",
+                            TotalNoOfBeds = 1
+                        });
                 });
 
             modelBuilder.Entity("Alert_To_Care.Models.PatientDataModel", b =>
@@ -65,8 +88,7 @@ namespace Alert_To_Care.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ContactNo")
-                        .HasColumnType("int")
-                        .HasMaxLength(10);
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -84,13 +106,13 @@ namespace Alert_To_Care.Migrations
                     b.HasData(
                         new
                         {
-                            PatientId = "1",
-                            Address = "abc street, swe city",
-                            BedId = "12",
-                            ContactNo = 987655398,
-                            Email = "123@abc.com",
-                            PatientAge = 22,
-                            PatientName = "Sneha"
+                            PatientId = "4",
+                            Address = "fgd street, swe city",
+                            BedId = "42",
+                            ContactNo = 98432198,
+                            Email = "fdw@adf.com",
+                            PatientAge = 38,
+                            PatientName = "Sonam"
                         });
                 });
 
@@ -114,6 +136,16 @@ namespace Alert_To_Care.Migrations
                     b.HasKey("PatientId");
 
                     b.ToTable("Vitals");
+
+                    b.HasData(
+                        new
+                        {
+                            PatientId = "2",
+                            Bpm = 60f,
+                            PatientBedId = "20",
+                            RespRate = 70f,
+                            Spo2 = 55f
+                        });
                 });
 #pragma warning restore 612, 618
         }

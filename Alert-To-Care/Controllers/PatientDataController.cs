@@ -22,51 +22,78 @@ namespace Alert_To_Care.Controllers
             this._patientdatabase = repo;
         }
         
-
         //GET: api/<PatientDataController>
         [HttpGet]
-        public IEnumerable<PatientDataModel> Get()
+        public IActionResult Get()
         {
-            return _patientdatabase.GetAllPatients();
+            var _allPatients = _patientdatabase.GetAllPatients();
+            if(_allPatients != null)
+            {
+                return Ok(_allPatients);
+            }
+            return BadRequest();
         }
 
         // GET api/<PatientDataController>/5
         [HttpGet("{id}")]
-        public PatientDataModel Get(string id)
+        public IActionResult Get(string id)
         {
-            PatientDataModel _patient = default(PatientDataModel);
-                foreach (PatientDataModel _patientTemp in _patientdatabase.GetAllPatients())
-                {
-                    if (String.Equals(_patientTemp.PatientId,id))
-                    {
-                        _patient = _patientTemp;
-                        break;
-                    }
-                }
-                return _patient;
+            PatientDataModel _patient = _patientdatabase.GetPatientInfoFromId(id);
+            if(_patient != null)
+            {
+                return Ok(_patient);
+            }
+            return BadRequest();
         }
-        
+
+        [HttpGet]
+        [Route("[action]/{id}")]
+        public IActionResult GetBedInfo(string id)
+        {
+            var _patientInfo = _patientdatabase.GetPatientInfoFromId(id);
+            if(_patientInfo != null)
+            {
+                var _bedId = _patientInfo.BedId;
+                return Ok(_patientdatabase.BedInfoFromPatientId(_bedId));
+            }
+            return BadRequest();
+        }
+
         //POST api/<PatientDataController>
         [HttpPost]
         public IActionResult Post([FromBody] PatientDataModel _patient)
         {
-            _patientdatabase.NewPatientAdd(_patient);
-            return Ok();
+            if(_patient != null)
+            {
+                var result = _patientdatabase.NewPatientAdd(_patient);
+                return Ok(result);
+
+            }
+            return BadRequest();
         }
 
         // DELETE api/<PatientDataController>/5
         [HttpDelete("{id}")]
-        public PatientDataModel Delete(string id)
+        public IActionResult Delete(string id)
         {
-            PatientDataModel _icu = _patientdatabase.DischargePatient(id);
-            return _icu;
+            PatientDataModel _patient = _patientdatabase.GetPatientInfoFromId(id);
+            if(_patient != null)
+            {
+                var result = _patientdatabase.DischargePatient(id);
+                return Ok(result);
+            }
+            return BadRequest();
         }
 
 
         //PUT api/<PatientDataController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+        public IActionResult Put(string id, [FromBody] PatientDataModel _patientDetailchanges)
+        { 
+                _patientDetailchanges.PatientId = id;
+                var result = _patientdatabase.UpdatePatient(_patientDetailchanges);
+                return Ok(result);
+          
         }
 
         

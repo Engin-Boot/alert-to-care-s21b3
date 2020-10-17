@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+//using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Alert_To_Care.Models;
@@ -22,51 +23,58 @@ namespace Alert_To_Care.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
-            /*
+            
              modelBuilder.Entity<PatientDataModel>(b =>
-             {
-                 b.HasData(new
+             { b.HasData(new
                  {
-                     PatientId = "1",
-                     PatientAge = 22,
-                     PatientName = "Sneha",
-                     BedId = "12",
-                     Address = "abc street, swe city",
-                     ContactNo = 0987655398,
-                     Email = "123@abc.com"
+                     PatientId = "4",
+                     PatientAge = 38,
+                     PatientName = "Sonam",
+                     BedId = "42",
+                     Address = "fgd street, swe city",
+                     ContactNo = 098432198,
+                     Email = "fdw@adf.com"
 
-                 });
-
-                 b.OwnsOne(e => e.vitals).HasData(new
-                 {
-                     PatientDataModelPatientId = "1",
-                     PatientId = "1",
-                     PatientBedId = "12",
-                     Bpm = 70f,
-                     Spo2 = 90f,
-                     RespRate = 66f
                  });
              });
-            */
-            /*
+            
+            
             modelBuilder.Entity<IcuDataModel>().HasData(
                 new IcuDataModel
                 {
                     IcuId = "1",
                     TotalNoOfBeds = 3,
-                    Layout = "L",
-                    IcuBedList = { "1", "2", "3" }
+                    Layout = "L"  
                 },
                  new IcuDataModel
                  {
                      IcuId = "2",
                      TotalNoOfBeds = 1,
-                     Layout = "Sq",
-                     IcuBedList = { "5" }
+                     Layout = "Sq"
                  }
                 );
+            modelBuilder.Entity<BedDataModel>().HasData(
+                new BedDataModel
+                {
+                    BedId = "20",
+                    BedStatus = true,
+                    PatientId = "2",
+                    IcuId = "34"
+                }
+                );
 
-           */
+            modelBuilder.Entity<VitalsDataModel>().HasData(
+                new VitalsDataModel
+                {
+                    PatientId = "2",
+                    PatientBedId = "20",
+                    Bpm = 60f,
+                    Spo2 = 55f,
+                    RespRate = 70f
+                }
+                );
+
+            ;
         }
 
     }

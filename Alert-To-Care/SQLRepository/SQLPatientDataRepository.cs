@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alert_To_Care.SQLRepository
@@ -35,9 +36,10 @@ namespace Alert_To_Care.SQLRepository
             return patient;
         }
 
-        public void AllotBedToPatient(PatientDataModel patient)
+        public PatientDataModel GetPatientInfoFromId(string patientId)
         {
-            throw new NotImplementedException();
+            PatientDataModel _details = _context.Patients.Find(patientId);
+            return _details;
         }
 
         public IEnumerable<PatientDataModel> GetAllPatients()
@@ -51,5 +53,16 @@ namespace Alert_To_Care.SQLRepository
             BedDataModel bed = _context.Beds.Find(_patientId);
             return bed;
         }
+
+        public PatientDataModel UpdatePatient(PatientDataModel patientDetailChanges)
+        {
+            var _patient = _context.Patients.Attach(patientDetailChanges);
+            _patient.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.SaveChanges();
+
+            return patientDetailChanges;
+        }
+
+        
     }
 }

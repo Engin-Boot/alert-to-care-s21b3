@@ -11,7 +11,8 @@ namespace Alert_To_Care.Repository
         public PatientDataModel NewPatientAdd(PatientDataModel patient);
         public PatientDataModel DischargePatient(string patientId);
         public IEnumerable<PatientDataModel> GetAllPatients();
-        public void AllotBedToPatient(PatientDataModel patient);
+        public PatientDataModel UpdatePatient(PatientDataModel patient);
+        public PatientDataModel GetPatientInfoFromId(string patientId);
         public BedDataModel BedInfoFromPatientId(string patientId);
     }
 }

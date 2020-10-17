@@ -45,6 +45,12 @@ namespace Alert_To_Care.SQLRepository
             return icu;
         }
 
+        public IcuDataModel UpdateIcu(IcuDataModel _icuDetailsChanges)
+        {
+            _context.Icu.Update(_icuDetailsChanges);
+            _context.SaveChanges();
+            return _icuDetailsChanges;
+        }
 
         public bool UpdateLayout(string icuId, string layout)
         {
