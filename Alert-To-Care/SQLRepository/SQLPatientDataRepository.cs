@@ -24,7 +24,7 @@ namespace Alert_To_Care.SQLRepository
             return patient;
         }
 
-        public PatientDataModel DischargePatient(int _patientId)
+        public PatientDataModel DischargePatient(string _patientId)
         {
             PatientDataModel patient = _context.Patients.Find(_patientId);
             if (patient != null)
@@ -45,23 +45,11 @@ namespace Alert_To_Care.SQLRepository
             return _context.Patients;
         }
 
-        public PatientDataModel PatientInfoFromPatientId(int _patientId)
-        {
-            //var query = (from patient in _context.Patients
-            //             join
-            //                 bed in _context.Beds on
-            //                 patient.PatientId equals bed.PatientId
-            //             where bed.BedId == patient.BedId
-            //             select patient);
-            //var finalPatient = query.FirstOrDefault();
-            //return finalPatient;
-            throw new NotImplementedException();
 
-        }
-
-        public BedDataModel BedInfoFromPatientId(int patientId)
+        public BedDataModel BedInfoFromPatientId(string _patientId)
         {
-            throw new NotImplementedException();
+            BedDataModel bed = _context.Beds.Find(_patientId);
+            return bed;
         }
     }
 }

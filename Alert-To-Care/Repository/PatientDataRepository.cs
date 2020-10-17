@@ -29,7 +29,7 @@ namespace Alert_To_Care.Repository
             //throw new NotImplementedException();
         }
 
-        public PatientDataModel DischargePatient(int _patientId)
+        public PatientDataModel DischargePatient(string _patientId)
         {
             PatientDataModel patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, _patientId));
             if (patient != null)
@@ -40,16 +40,7 @@ namespace Alert_To_Care.Repository
             //throw new NotImplementedException();
         }
 
-        public PatientDataModel PatientInfoFromPatientId(int _patientId)
-        {
-            PatientDataModel _patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId,_patientId));
-            if (_patient != null)
-            {
-                return _patient;
-            }
-            
-            throw new NotImplementedException();
-        }
+        
         public IEnumerable<PatientDataModel> GetAllPatients()
         {
             return _patientList;
@@ -59,7 +50,7 @@ namespace Alert_To_Care.Repository
             throw new NotImplementedException();
         }
 
-        public BedDataModel BedInfoFromPatientId(int _patientId)
+        public BedDataModel BedInfoFromPatientId(string _patientId)
         { 
 
             throw new NotImplementedException();

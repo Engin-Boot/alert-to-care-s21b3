@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alert_To_Care.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20201016143600_initialMigration")]
+    [Migration("20201017073931_initialMigration")]
     partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,9 +28,6 @@ namespace Alert_To_Care.Migrations
                     b.Property<bool>("BedStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("IcuDataModelIcuId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("IcuId")
                         .HasColumnType("nvarchar(max)");
 
@@ -38,8 +35,6 @@ namespace Alert_To_Care.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BedId");
-
-                    b.HasIndex("IcuDataModelIcuId");
 
                     b.ToTable("Beds");
                 });
@@ -84,12 +79,7 @@ namespace Alert_To_Care.Migrations
                     b.Property<string>("PatientName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("vitalsPatientId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("PatientId");
-
-                    b.HasIndex("vitalsPatientId");
 
                     b.ToTable("Patients");
                 });
@@ -113,21 +103,7 @@ namespace Alert_To_Care.Migrations
 
                     b.HasKey("PatientId");
 
-                    b.ToTable("VitalsDataModel");
-                });
-
-            modelBuilder.Entity("Alert_To_Care.Models.BedDataModel", b =>
-                {
-                    b.HasOne("Alert_To_Care.Models.IcuDataModel", null)
-                        .WithMany("IcuBedList")
-                        .HasForeignKey("IcuDataModelIcuId");
-                });
-
-            modelBuilder.Entity("Alert_To_Care.Models.PatientDataModel", b =>
-                {
-                    b.HasOne("Alert_To_Care.Models.VitalsDataModel", "vitals")
-                        .WithMany()
-                        .HasForeignKey("vitalsPatientId");
+                    b.ToTable("Vitals");
                 });
 #pragma warning restore 612, 618
         }

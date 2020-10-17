@@ -9,10 +9,9 @@ namespace Alert_To_Care.Repository
     public interface IPatientDataRepository
     {
         public PatientDataModel NewPatientAdd(PatientDataModel patient);
-        public PatientDataModel DischargePatient(int patientId);
-        public void AllotBedToPatient(PatientDataModel patient);
-        public PatientDataModel PatientInfoFromPatientId(int patientId);
+        public PatientDataModel DischargePatient(string patientId);
         public IEnumerable<PatientDataModel> GetAllPatients();
-        public BedDataModel BedInfoFromPatientId(int patientId);
+        public void AllotBedToPatient(PatientDataModel patient);
+        public BedDataModel BedInfoFromPatientId(string patientId);
     }
 }

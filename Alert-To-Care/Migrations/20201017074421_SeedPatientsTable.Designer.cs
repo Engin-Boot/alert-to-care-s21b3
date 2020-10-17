@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alert_To_Care.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20201016143658_SeedPatientsTable")]
+    [Migration("20201017074421_SeedPatientsTable")]
     partial class SeedPatientsTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,9 +28,6 @@ namespace Alert_To_Care.Migrations
                     b.Property<bool>("BedStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("IcuDataModelIcuId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("IcuId")
                         .HasColumnType("nvarchar(max)");
 
@@ -38,8 +35,6 @@ namespace Alert_To_Care.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BedId");
-
-                    b.HasIndex("IcuDataModelIcuId");
 
                     b.ToTable("Beds");
                 });
@@ -101,57 +96,26 @@ namespace Alert_To_Care.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Alert_To_Care.Models.BedDataModel", b =>
+            modelBuilder.Entity("Alert_To_Care.Models.VitalsDataModel", b =>
                 {
-                    b.HasOne("Alert_To_Care.Models.IcuDataModel", null)
-                        .WithMany("IcuBedList")
-                        .HasForeignKey("IcuDataModelIcuId");
-                });
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(450)");
 
-            modelBuilder.Entity("Alert_To_Care.Models.PatientDataModel", b =>
-                {
-                    b.OwnsOne("Alert_To_Care.Models.VitalsDataModel", "vitals", b1 =>
-                        {
-                            b1.Property<string>("PatientId")
-                                .HasColumnType("nvarchar(450)");
+                    b.Property<float>("Bpm")
+                        .HasColumnType("real");
 
-                            b1.Property<float>("Bpm")
-                                .HasColumnType("real");
+                    b.Property<string>("PatientBedId")
+                        .HasColumnType("nvarchar(max)");
 
-                            b1.Property<string>("PatientBedId")
-                                .HasColumnType("nvarchar(max)");
+                    b.Property<float>("RespRate")
+                        .HasColumnType("real");
 
-                            b1.Property<string>("PatientDataModelPatientId")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(450)");
+                    b.Property<float>("Spo2")
+                        .HasColumnType("real");
 
-                            b1.Property<float>("RespRate")
-                                .HasColumnType("real");
+                    b.HasKey("PatientId");
 
-                            b1.Property<float>("Spo2")
-                                .HasColumnType("real");
-
-                            b1.HasKey("PatientId");
-
-                            b1.HasIndex("PatientDataModelPatientId")
-                                .IsUnique();
-
-                            b1.ToTable("Patients1");
-
-                            b1.WithOwner()
-                                .HasForeignKey("PatientDataModelPatientId");
-
-                            b1.HasData(
-                                new
-                                {
-                                    PatientId = "1",
-                                    Bpm = 70f,
-                                    PatientBedId = "12",
-                                    PatientDataModelPatientId = "1",
-                                    RespRate = 66f,
-                                    Spo2 = 90f
-                                });
-                        });
+                    b.ToTable("Vitals");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,6 +10,34 @@
     <Compile Remove="Migrations\20201016140940_initialMigration.Designer.cs" />
     <Compile Remove="Migrations\20201016141149_SeedPatientsTable.cs" />
     <Compile Remove="Migrations\20201016141149_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201016143600_initialMigration.cs" />
+    <Compile Remove="Migrations\20201016143600_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201016143658_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201016143658_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201016201959_initialMigration.cs" />
+    <Compile Remove="Migrations\20201016201959_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201016202019_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201016202019_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201016202717_initialMigration.cs" />
+    <Compile Remove="Migrations\20201016202717_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201016202739_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201016202739_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201016202934_initialMigration.cs" />
+    <Compile Remove="Migrations\20201016202934_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201016203017_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201016203017_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201016203823_initialMigration.cs" />
+    <Compile Remove="Migrations\20201016203823_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201016203847_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201016203847_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201016204212_initialMigration.cs" />
+    <Compile Remove="Migrations\20201016204212_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201016204243_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201016204243_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201016204629_initialMigration.cs" />
+    <Compile Remove="Migrations\20201016204629_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201016204654_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201016204654_SeedPatientsTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

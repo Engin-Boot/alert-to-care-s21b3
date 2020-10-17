@@ -12,7 +12,6 @@ namespace Alert_To_Care.Models
         public string IcuId { get; set; }
         public int TotalNoOfBeds { get; set; }
         public string Layout { get; set; }
-        public List<BedDataModel> IcuBedList { get; set; }
        
 
     }

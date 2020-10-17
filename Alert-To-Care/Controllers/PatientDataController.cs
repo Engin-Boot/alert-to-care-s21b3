@@ -21,21 +21,20 @@ namespace Alert_To_Care.Controllers
         {
             this._patientdatabase = repo;
         }
+        
 
         //GET: api/<PatientDataController>
         [HttpGet]
         public IEnumerable<PatientDataModel> Get()
         {
-            return this._patientdatabase.GetAllPatients();
+            return _patientdatabase.GetAllPatients();
         }
 
         // GET api/<PatientDataController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public PatientDataModel Get(string id)
         {
-            try
-            {
-                PatientDataModel _patient = default(PatientDataModel);
+            PatientDataModel _patient = default(PatientDataModel);
                 foreach (PatientDataModel _patientTemp in _patientdatabase.GetAllPatients())
                 {
                     if (String.Equals(_patientTemp.PatientId,id))
@@ -44,29 +43,25 @@ namespace Alert_To_Care.Controllers
                         break;
                     }
                 }
-                return Ok(_patient);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-            
+                return _patient;
         }
-
+        
         //POST api/<PatientDataController>
         [HttpPost]
         public IActionResult Post([FromBody] PatientDataModel _patient)
         {
-            try
-            {
-                _patientdatabase.NewPatientAdd(_patient);
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            _patientdatabase.NewPatientAdd(_patient);
+            return Ok();
         }
+
+        // DELETE api/<PatientDataController>/5
+        [HttpDelete("{id}")]
+        public PatientDataModel Delete(string id)
+        {
+            PatientDataModel _icu = _patientdatabase.DischargePatient(id);
+            return _icu;
+        }
+
 
         //PUT api/<PatientDataController>/5
         [HttpPut("{id}")]
@@ -74,10 +69,6 @@ namespace Alert_To_Care.Controllers
         {
         }
 
-        // DELETE api/<PatientDataController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }
