@@ -31,41 +31,20 @@ namespace Alert_To_Care.Controllers
 
         // GET api/<PatientDataController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            try
-            {
-                PatientDataModel _patient = default(PatientDataModel);
-                foreach (PatientDataModel _patientTemp in _patientdatabase.GetAllPatients())
-                {
-                    if (String.Equals(_patientTemp.PatientId,id))
-                    {
-                        _patient = _patientTemp;
-                        break;
-                    }
-                }
-                return Ok(_patient);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-            
+        public PatientDataModel Get(string id)
+        { 
+                 PatientDataModel _patient = _patientdatabase.PatientInfoFromPatientId(id);
+                 return _patient;
         }
 
         //POST api/<PatientDataController>
         [HttpPost]
-        public IActionResult Post([FromBody] PatientDataModel _patient)
+        public PatientDataModel Post([FromBody] PatientDataModel _patient)
         {
-            try
-            {
-                _patientdatabase.NewPatientAdd(_patient);
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            
+            _patientdatabase.NewPatientAdd(_patient);
+            return _patient;
+            //return Ok();
         }
 
         //PUT api/<PatientDataController>/5
@@ -76,8 +55,17 @@ namespace Alert_To_Care.Controllers
 
         // DELETE api/<PatientDataController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            try
+            {
+                var removedPatient = _patientdatabase.DischargePatient(id);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }    
         }
     }
 }

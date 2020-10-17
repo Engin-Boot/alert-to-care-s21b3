@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alert_To_Care.SQLRepository
 {
@@ -17,14 +18,14 @@ namespace Alert_To_Care.SQLRepository
             _context = context;
         }
 
-        public PatientDataModel NewPatientAdd(PatientDataModel patient)
+        public void NewPatientAdd(PatientDataModel patient)
         {
             _context.Patients.Add(patient);
             _context.SaveChanges();
-            return patient;
+           // return patient;
         }
 
-        public PatientDataModel DischargePatient(int _patientId)
+        public PatientDataModel DischargePatient(string _patientId)
         {
             PatientDataModel patient = _context.Patients.Find(_patientId);
             if (patient != null)
@@ -45,23 +46,26 @@ namespace Alert_To_Care.SQLRepository
             return _context.Patients;
         }
 
-        public PatientDataModel PatientInfoFromPatientId(int _patientId)
+        public PatientDataModel PatientInfoFromPatientId(string _patientId)
         {
-            //var query = (from patient in _context.Patients
-            //             join
-            //                 bed in _context.Beds on
-            //                 patient.PatientId equals bed.PatientId
-            //             where bed.BedId == patient.BedId
-            //             select patient);
-            //var finalPatient = query.FirstOrDefault();
-            //return finalPatient;
-            throw new NotImplementedException();
+            var _patient = new PatientDataModel();
+            foreach (PatientDataModel _patientTemp in _context.Patients)
+            {
+                if (string.Equals(_patientTemp.PatientId, _patientId))
+                {
+                    _patient = _patientTemp;
 
+                }
+            }
+            return _patient;
+            
         }
 
-        public BedDataModel BedInfoFromPatientId(int patientId)
+        public BedDataModel BedInfoFromPatientId(string patientId)
         {
-            throw new NotImplementedException();
+            BedDataModel _bedInfo = _context.Beds.FirstOrDefault(m => String.Equals(m.PatientId,patientId));
+            return _bedInfo;
+           
         }
     }
 }

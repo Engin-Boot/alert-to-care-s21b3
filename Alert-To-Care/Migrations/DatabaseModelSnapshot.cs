@@ -40,6 +40,29 @@ namespace Alert_To_Care.Migrations
                     b.HasIndex("IcuDataModelIcuId");
 
                     b.ToTable("Beds");
+
+                    b.HasData(
+                        new
+                        {
+                            BedId = "12",
+                            BedStatus = true,
+                            IcuId = "25a",
+                            PatientId = "1"
+                        },
+                        new
+                        {
+                            BedId = "32",
+                            BedStatus = true,
+                            IcuId = "25a",
+                            PatientId = "2"
+                        },
+                        new
+                        {
+                            BedId = "40",
+                            BedStatus = false,
+                            IcuId = "25a",
+                            PatientId = ""
+                        });
                 });
 
             modelBuilder.Entity("Alert_To_Care.Models.IcuDataModel", b =>
@@ -90,12 +113,22 @@ namespace Alert_To_Care.Migrations
                         new
                         {
                             PatientId = "1",
-                            Address = "abc street, swe city",
+                            Address = "1ab street, swe city",
                             BedId = "12",
-                            ContactNo = 987655398,
+                            ContactNo = 987653412,
                             Email = "123@abc.com",
-                            PatientAge = 22,
+                            PatientAge = 30,
                             PatientName = "Sneha"
+                        },
+                        new
+                        {
+                            PatientId = "2",
+                            Address = "123 street, swe city",
+                            BedId = "32",
+                            ContactNo = 874652391,
+                            Email = "223@aer.com",
+                            PatientAge = 42,
+                            PatientName = "priya"
                         });
                 });
 
@@ -143,11 +176,20 @@ namespace Alert_To_Care.Migrations
                                 new
                                 {
                                     PatientId = "1",
-                                    Bpm = 70f,
+                                    Bpm = 60f,
                                     PatientBedId = "12",
                                     PatientDataModelPatientId = "1",
-                                    RespRate = 66f,
+                                    RespRate = 42f,
                                     Spo2 = 90f
+                                },
+                                new
+                                {
+                                    PatientId = "2",
+                                    Bpm = 40f,
+                                    PatientBedId = "32",
+                                    PatientDataModelPatientId = "2",
+                                    RespRate = 57f,
+                                    Spo2 = 82f
                                 });
                         });
                 });
