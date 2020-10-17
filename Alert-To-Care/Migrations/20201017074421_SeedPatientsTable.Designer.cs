@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alert_To_Care.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20201016143600_initialMigration")]
-    partial class initialMigration
+    [Migration("20201017074421_SeedPatientsTable")]
+    partial class SeedPatientsTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,6 @@ namespace Alert_To_Care.Migrations
                     b.Property<bool>("BedStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("IcuDataModelIcuId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("IcuId")
                         .HasColumnType("nvarchar(max)");
 
@@ -38,8 +35,6 @@ namespace Alert_To_Care.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BedId");
-
-                    b.HasIndex("IcuDataModelIcuId");
 
                     b.ToTable("Beds");
                 });
@@ -84,14 +79,21 @@ namespace Alert_To_Care.Migrations
                     b.Property<string>("PatientName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("vitalsPatientId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("PatientId");
 
-                    b.HasIndex("vitalsPatientId");
-
                     b.ToTable("Patients");
+
+                    b.HasData(
+                        new
+                        {
+                            PatientId = "1",
+                            Address = "abc street, swe city",
+                            BedId = "12",
+                            ContactNo = 987655398,
+                            Email = "123@abc.com",
+                            PatientAge = 22,
+                            PatientName = "Sneha"
+                        });
                 });
 
             modelBuilder.Entity("Alert_To_Care.Models.VitalsDataModel", b =>
@@ -113,21 +115,7 @@ namespace Alert_To_Care.Migrations
 
                     b.HasKey("PatientId");
 
-                    b.ToTable("VitalsDataModel");
-                });
-
-            modelBuilder.Entity("Alert_To_Care.Models.BedDataModel", b =>
-                {
-                    b.HasOne("Alert_To_Care.Models.IcuDataModel", null)
-                        .WithMany("IcuBedList")
-                        .HasForeignKey("IcuDataModelIcuId");
-                });
-
-            modelBuilder.Entity("Alert_To_Care.Models.PatientDataModel", b =>
-                {
-                    b.HasOne("Alert_To_Care.Models.VitalsDataModel", "vitals")
-                        .WithMany()
-                        .HasForeignKey("vitalsPatientId");
+                    b.ToTable("Vitals");
                 });
 #pragma warning restore 612, 618
         }

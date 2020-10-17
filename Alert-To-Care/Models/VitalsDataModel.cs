@@ -9,8 +9,7 @@ namespace Alert_To_Care.Models
 {
     public class VitalsDataModel
     {
-        [Key]
-        
+        [Key]        
         public string PatientId { get; set; }
         public string PatientBedId { get; set; }
         public float Bpm { get; set; }

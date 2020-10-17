@@ -3,14 +3,16 @@ using Alert_To_Care.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Alert_To_Care.Migrations
 {
     [DbContext(typeof(Database))]
-    partial class DatabaseModelSnapshot : ModelSnapshot
+    [Migration("20201017073931_initialMigration")]
+    partial class initialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,18 +82,6 @@ namespace Alert_To_Care.Migrations
                     b.HasKey("PatientId");
 
                     b.ToTable("Patients");
-
-                    b.HasData(
-                        new
-                        {
-                            PatientId = "1",
-                            Address = "abc street, swe city",
-                            BedId = "12",
-                            ContactNo = 987655398,
-                            Email = "123@abc.com",
-                            PatientAge = 22,
-                            PatientName = "Sneha"
-                        });
                 });
 
             modelBuilder.Entity("Alert_To_Care.Models.VitalsDataModel", b =>

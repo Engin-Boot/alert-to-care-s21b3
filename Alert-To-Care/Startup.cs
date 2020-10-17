@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Alert_To_Care.Repository;
 using Alert_To_Care.SQLRepository;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 
 namespace Alert_To_Care
 {
@@ -32,6 +33,7 @@ namespace Alert_To_Care
                 options => options.UseSqlServer(Configuration.GetConnectionString("PatientDBConnection")));
             services.AddControllers();
             services.AddTransient<IPatientDataRepository, SQLPatientDataRepository>();
+            services.AddTransient<IIcuDataRepository, SQLIcuDataRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +47,7 @@ namespace Alert_To_Care
             app.UseRouting();
 
             //app.UseAuthorization();
-
+           // app.UseMvc();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

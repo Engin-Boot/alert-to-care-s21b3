@@ -21,31 +21,47 @@ namespace Alert_To_Care.Controllers
         {
             this._patientdatabase = repo;
         }
+        
 
         //GET: api/<PatientDataController>
         [HttpGet]
         public IEnumerable<PatientDataModel> Get()
         {
-            return this._patientdatabase.GetAllPatients();
+            return _patientdatabase.GetAllPatients();
         }
 
         // GET api/<PatientDataController>/5
         [HttpGet("{id}")]
         public PatientDataModel Get(string id)
-        { 
-                 PatientDataModel _patient = _patientdatabase.PatientInfoFromPatientId(id);
-                 return _patient;
+        {
+            PatientDataModel _patient = default(PatientDataModel);
+                foreach (PatientDataModel _patientTemp in _patientdatabase.GetAllPatients())
+                {
+                    if (String.Equals(_patientTemp.PatientId,id))
+                    {
+                        _patient = _patientTemp;
+                        break;
+                    }
+                }
+                return _patient;
         }
-
+        
         //POST api/<PatientDataController>
         [HttpPost]
-        public PatientDataModel Post([FromBody] PatientDataModel _patient)
+        public IActionResult Post([FromBody] PatientDataModel _patient)
         {
-            
             _patientdatabase.NewPatientAdd(_patient);
-            return _patient;
-            //return Ok();
+            return Ok();
         }
+
+        // DELETE api/<PatientDataController>/5
+        [HttpDelete("{id}")]
+        public PatientDataModel Delete(string id)
+        {
+            PatientDataModel _icu = _patientdatabase.DischargePatient(id);
+            return _icu;
+        }
+
 
         //PUT api/<PatientDataController>/5
         [HttpPut("{id}")]
@@ -53,19 +69,6 @@ namespace Alert_To_Care.Controllers
         {
         }
 
-        // DELETE api/<PatientDataController>/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
-        {
-            try
-            {
-                var removedPatient = _patientdatabase.DischargePatient(id);
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-            }    
-        }
+        
     }
 }

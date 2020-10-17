@@ -8,11 +8,10 @@ namespace Alert_To_Care.Repository
 {
     public interface IPatientDataRepository
     {
-        public void NewPatientAdd(PatientDataModel patient);
+        public PatientDataModel NewPatientAdd(PatientDataModel patient);
         public PatientDataModel DischargePatient(string patientId);
-        public void AllotBedToPatient(PatientDataModel patient);
-        public PatientDataModel PatientInfoFromPatientId(string patientId);
         public IEnumerable<PatientDataModel> GetAllPatients();
+        public void AllotBedToPatient(PatientDataModel patient);
         public BedDataModel BedInfoFromPatientId(string patientId);
     }
 }
