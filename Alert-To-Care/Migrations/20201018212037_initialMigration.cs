@@ -64,6 +64,30 @@ namespace Alert_To_Care.Migrations
                 {
                     table.PrimaryKey("PK_Vitals", x => x.PatientId);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Beds",
+                columns: new[] { "BedId", "BedStatus", "IcuId", "PatientId" },
+                values: new object[] { "40", true, "2", "1" });
+
+            migrationBuilder.InsertData(
+                table: "Icu",
+                columns: new[] { "IcuId", "Layout", "TotalNoOfBeds" },
+                values: new object[,]
+                {
+                    { "1", "L", 3 },
+                    { "2", "Sq", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Patients",
+                columns: new[] { "PatientId", "Address", "BedId", "ContactNo", "Email", "PatientAge", "PatientName" },
+                values: new object[] { "1", "fgd street, swe city", "40", 98432198, "fdw@adf.com", 38, "Sonam" });
+
+            migrationBuilder.InsertData(
+                table: "Vitals",
+                columns: new[] { "PatientId", "Bpm", "PatientBedId", "RespRate", "Spo2" },
+                values: new object[] { "1", 60f, "40", 70f, 55f });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

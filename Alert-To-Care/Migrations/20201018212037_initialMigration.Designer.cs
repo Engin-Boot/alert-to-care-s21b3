@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alert_To_Care.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20201017113731_SeedBedsTable")]
-    partial class SeedBedsTable
+    [Migration("20201018212037_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,10 +41,10 @@ namespace Alert_To_Care.Migrations
                     b.HasData(
                         new
                         {
-                            BedId = "20",
+                            BedId = "40",
                             BedStatus = true,
-                            IcuId = "34",
-                            PatientId = "2"
+                            IcuId = "2",
+                            PatientId = "1"
                         });
                 });
 
@@ -108,9 +108,9 @@ namespace Alert_To_Care.Migrations
                     b.HasData(
                         new
                         {
-                            PatientId = "4",
+                            PatientId = "1",
                             Address = "fgd street, swe city",
-                            BedId = "42",
+                            BedId = "40",
                             ContactNo = 98432198,
                             Email = "fdw@adf.com",
                             PatientAge = 38,
@@ -142,9 +142,9 @@ namespace Alert_To_Care.Migrations
                     b.HasData(
                         new
                         {
-                            PatientId = "2",
+                            PatientId = "1",
                             Bpm = 60f,
-                            PatientBedId = "20",
+                            PatientBedId = "40",
                             RespRate = 70f,
                             Spo2 = 55f
                         });

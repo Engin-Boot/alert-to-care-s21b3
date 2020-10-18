@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201017105417_initialMigration.cs" />
+    <Compile Remove="Migrations\20201017105417_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201017105749_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201017105749_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201017111729_SeedIcuTable.cs" />
+    <Compile Remove="Migrations\20201017111729_SeedIcuTable.Designer.cs" />
+    <Compile Remove="Migrations\20201017113731_SeedBedsTable.cs" />
+    <Compile Remove="Migrations\20201017113731_SeedBedsTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
