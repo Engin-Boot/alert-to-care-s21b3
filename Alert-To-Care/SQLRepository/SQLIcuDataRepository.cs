@@ -15,12 +15,24 @@ namespace Alert_To_Care.SQLRepository
         {
             _context = context;
         }
-
+        private bool CheckValidity(IcuDataModel icu)
+        {
+            if (icu.Layout != null && icu.TotalNoOfBeds > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         public IcuDataModel AddIcu(IcuDataModel icu)
         {
-            _context.Icu.Add(icu);
-            _context.SaveChanges();
-            return icu;
+            if (icu != null && CheckValidity(icu))
+            {
+                _context.Icu.Add(icu);
+                _context.SaveChanges();
+                return icu;
+
+            }
+            return null;
         }
 
         public IEnumerable<IcuDataModel> GetAllIcu()
@@ -47,8 +59,13 @@ namespace Alert_To_Care.SQLRepository
 
         public IcuDataModel UpdateIcu(IcuDataModel _icuDetailsChanges)
         {
-            _context.Icu.Update(_icuDetailsChanges);
-            _context.SaveChanges();
+            IcuDataModel icu = _context.Icu.Find(_icuDetailsChanges.IcuId);
+            if (icu != null)
+            {
+                _context.Icu.Update(_icuDetailsChanges);
+                _context.SaveChanges();
+                return _icuDetailsChanges;
+            }
             return _icuDetailsChanges;
         }
 

@@ -76,12 +76,12 @@ namespace Alert_To_Care.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] IcuDataModel icu)
         {
-            if(icu != null)
-            {
-                var result = _icudatabase.AddIcu(icu);
-                return Ok(result);
-            }
-
+             var result = _icudatabase.AddIcu(icu);
+                if(result != null)
+                {
+                    return Ok(result);
+                }
+                
             return BadRequest();
         }
 
@@ -103,9 +103,13 @@ namespace Alert_To_Care.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] IcuDataModel _icuDetailsChanges)
         { 
-                    _icuDetailsChanges.IcuId = id;
-                var result = _icudatabase.UpdateIcu(_icuDetailsChanges);
-                    return Ok(result);
+           _icuDetailsChanges.IcuId = id;
+           var result = _icudatabase.UpdateIcu(_icuDetailsChanges);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
         }
 
         
