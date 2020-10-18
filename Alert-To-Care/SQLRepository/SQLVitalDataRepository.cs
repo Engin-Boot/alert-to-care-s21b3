@@ -34,6 +34,7 @@ namespace Alert_To_Care.SQLRepository
             string alert = spo2Result + bpmResult + RespRateResult;
             if (alert.Length != 0)
             {
+                alert = "PatientId : "+ _patientId + " --> "+alert;
                 SendAlert(email, alert);
             }
 
@@ -45,7 +46,7 @@ namespace Alert_To_Care.SQLRepository
             string spoMsg = "";
             if (spo2 < 90.0)
             {
-                spoMsg += "Spo2 is low,";
+                spoMsg += " [ Spo2 is low ] ";
             }
             return spoMsg;
         }
@@ -54,11 +55,11 @@ namespace Alert_To_Care.SQLRepository
             string bpmMsg = "";
             if (bpm < 70.0)
             {
-                bpmMsg += "bpm is low,";
+                bpmMsg += " [ bpm is low ] ";
             }
             else if (bpm > 150.0)
             {
-                bpmMsg += "bpm is high,";
+                bpmMsg += " [ bpm is high ] ";
             }
             return bpmMsg;
         }
@@ -67,11 +68,11 @@ namespace Alert_To_Care.SQLRepository
             string RespRatemsg = "";
             if (rr < 30.0)
             {
-                RespRatemsg += "RespRate is low,";
+                RespRatemsg += " [ RespRate is low ] ";
             }
             else if (rr > 95.0)
             {
-                RespRatemsg += "RespRate is high,";
+                RespRatemsg += " [ RespRate is high ] ";
             }
             return RespRatemsg;
         }
