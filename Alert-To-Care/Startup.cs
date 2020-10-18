@@ -35,6 +35,8 @@ namespace Alert_To_Care
             services.AddTransient<IPatientDataRepository, SQLPatientDataRepository>();
             services.AddTransient<IIcuDataRepository, SQLIcuDataRepository>();
             services.AddTransient<IBedDataRepository, SQLBedDataRepository>();
+            services.AddTransient<IVitalDataRepository, SQLVitalDataRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

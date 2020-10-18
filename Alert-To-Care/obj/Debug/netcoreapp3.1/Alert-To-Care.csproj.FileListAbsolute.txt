@@ -229,7 +229,6 @@ C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\
 C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.dll
 C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.pdb
 C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.genruntimeconfig.cache
-C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.csprojAssemblyReference.cache
 C:\Users\MEITY\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
 C:\Users\MEITY\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\EntityFramework.dll
 C:\Users\MEITY\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
@@ -373,3 +372,10 @@ C:\Users\MEITY\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-T
 C:\Users\MEITY\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\MEITY\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.csproj.CopyComplete
 C:\Users\MEITY\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.csprojAssemblyReference.cache
+C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
+C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\EntityFramework.dll
+C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\System.CodeDom.dll
+C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Ekta\Desktop\alert-to-care-s21b3\Alert-To-Care\obj\Debug\netcoreapp3.1\Alert-To-Care.csprojAssemblyReference.cache

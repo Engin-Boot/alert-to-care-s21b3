@@ -27,10 +27,10 @@ namespace Alert_To_Care.Repository
              modelBuilder.Entity<PatientDataModel>(b =>
              { b.HasData(new
                  {
-                     PatientId = "4",
+                     PatientId = "1",
                      PatientAge = 38,
                      PatientName = "Sonam",
-                     BedId = "42",
+                     BedId = "40",
                      Address = "fgd street, swe city",
                      ContactNo = 098432198,
                      Email = "fdw@adf.com"
@@ -56,18 +56,18 @@ namespace Alert_To_Care.Repository
             modelBuilder.Entity<BedDataModel>().HasData(
                 new BedDataModel
                 {
-                    BedId = "20",
+                    BedId = "40",
                     BedStatus = true,
-                    PatientId = "2",
-                    IcuId = "34"
+                    PatientId = "1",
+                    IcuId = "2"
                 }
                 );
 
             modelBuilder.Entity<VitalsDataModel>().HasData(
                 new VitalsDataModel
                 {
-                    PatientId = "2",
-                    PatientBedId = "20",
+                    PatientId = "1",
+                    PatientBedId = "40",
                     Bpm = 60f,
                     Spo2 = 55f,
                     RespRate = 70f
