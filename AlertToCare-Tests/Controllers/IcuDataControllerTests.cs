@@ -103,15 +103,7 @@ namespace AlertToCare_Tests.Controllers
             var _responseObject = _response as OkObjectResult;
             Assert.Equal(200, _responseObject.StatusCode);
         }
-        [Fact]
-        public void WhenGivenInValidIDPutFails()
-        {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _changes = new IcuDataModel() { TotalNoOfBeds = 39 };
-            var _response = _controller.Put("7", _changes);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
-        }
+        
         [Fact]
         public void WhenGivenValidIDGetLayoutExecutes()
         {
