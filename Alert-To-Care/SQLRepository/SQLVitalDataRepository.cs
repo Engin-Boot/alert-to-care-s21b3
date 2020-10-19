@@ -20,12 +20,19 @@ namespace Alert_To_Care.SQLRepository
         public VitalsDataModel GetAllVital(string _patientId)
         {
             VitalsDataModel vital = _context.Vitals.Find(_patientId);
-            return vital;
+            if (vital != null)
+            {
+                return vital;
+            }
+            return null;
         }
         public string CheckVital(string _patientId)
         {
             VitalsDataModel vital = _context.Vitals.Find(_patientId);
-
+            if (vital == null)
+            {
+                return null;
+            }
             string email = "alertcasestudy@gmail.com";
 
             string spo2Result = CheckSpo2InRange(vital.Spo2);
@@ -34,7 +41,8 @@ namespace Alert_To_Care.SQLRepository
             string alert = spo2Result + bpmResult + RespRateResult;
             if (alert.Length != 0)
             {
-                alert = "PatientId : "+ _patientId + " --> "+alert;
+              
+                alert = "PatientId:" + _patientId + " --> "+alert;
                 SendAlert(email, alert);
             }
 
@@ -96,13 +104,15 @@ namespace Alert_To_Care.SQLRepository
         public VitalsDataModel NewVitalAdd(VitalsDataModel vital)
         {
 
-            PatientDataModel patientvital = _context.Patients.Find(vital.PatientId);
-            if (patientvital != null)
+            PatientDataModel idInPatientTable = _context.Patients.Find(vital.PatientId);
+            VitalsDataModel idInVitalTable = _context.Vitals.Find(vital.PatientId);
+            if (idInPatientTable != null && idInVitalTable == null)
             {
                 _context.Vitals.Add(vital);
                 _context.SaveChanges();
+                return vital;
             }
-            return vital;
+            return null;
         }
 
         public VitalsDataModel RemoveVital(string _patientId)
@@ -112,22 +122,39 @@ namespace Alert_To_Care.SQLRepository
             {
                 _context.Vitals.Remove(vital);
                 _context.SaveChanges();
+                return vital;
             }
-            return vital;
+            return null;
         }
 
         public IEnumerable<VitalsDataModel> GetAll()
         {
-            return _context.Vitals;
+            IEnumerable<VitalsDataModel> listOfVitals = _context.Vitals;
+            if (listOfVitals != null)
+            {
+                return listOfVitals;
+            }
+            return null;
         }
 
         public VitalsDataModel UpdatePatientVitals(VitalsDataModel patientvital)
         {
-            var _patient = _context.Vitals.Attach(patientvital);
-            _patient.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _context.SaveChanges();
-
-            return patientvital;
+            string _id = patientvital.PatientId;
+            if (_context.Vitals.Find(_id) != null)
+            {
+                VitalsDataModel vital = _context.Vitals.Find(_id);
+                if (vital != null)
+                {
+                    vital.PatientBedId = patientvital.PatientBedId;
+                    vital.RespRate = patientvital.RespRate;
+                    vital.Spo2 = patientvital.Spo2;
+                    vital.Bpm = patientvital.Bpm;
+                    _context.SaveChanges();
+                    return vital;
+                }
+                return null;
+            }
+            return null;
         }
     }
 }

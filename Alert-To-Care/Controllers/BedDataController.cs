@@ -75,9 +75,15 @@ namespace Alert_To_Care.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] BedDataModel _bedDetails)
         {
-           _bedDetails.BedId = id;
-           var result = _bedDatabase.UpdateBed(_bedDetails);
-                return Ok(result);
+            if (_bedDetails.BedId == id)
+            {
+                var result = _bedDatabase.UpdateBed(_bedDetails);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+            }
+            return BadRequest();
         }
 
         // DELETE api/<BedDataController>/5

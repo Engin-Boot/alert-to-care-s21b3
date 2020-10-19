@@ -74,10 +74,20 @@ namespace AlertToCare_Tests.MockRepository
                return patient;
         }
 
-        public PatientDataModel UpdatePatient(PatientDataModel patient)
+        public PatientDataModel UpdatePatient(PatientDataModel patientDetailChanges)
         {
-            PatientDataModel _patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, patient.PatientId));
-            return _patient;
+            PatientDataModel patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, patientDetailChanges.PatientId));
+            if (patient != null)
+            {
+                patient.PatientName = patientDetailChanges.PatientName;
+                patient.PatientAge = patientDetailChanges.PatientAge;
+                patient.Email = patientDetailChanges.Email;
+                patient.BedId = patientDetailChanges.BedId;
+                patient.ContactNo = patientDetailChanges.ContactNo;
+                patient.Address = patientDetailChanges.Address;
+                return patient;
+            }
+            return null;
         }
     }
 }

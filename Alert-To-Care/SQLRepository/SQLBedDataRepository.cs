@@ -47,9 +47,21 @@ namespace Alert_To_Care.SQLRepository
 
         public BedDataModel UpdateBed(BedDataModel _bedDetailsChanges)
         {
-            _context.Beds.Update(_bedDetailsChanges);
-            _context.SaveChanges();
-            return _bedDetailsChanges;
+            string _id = _bedDetailsChanges.BedId;
+            if (_context.Beds.Find(_id) != null)
+            {
+                BedDataModel bed = _context.Beds.Find(_id);
+                if (bed != null)
+                {
+                    bed.BedStatus = _bedDetailsChanges.BedStatus;
+                    bed.PatientId = _bedDetailsChanges.PatientId;
+                    bed.IcuId = _bedDetailsChanges.IcuId;
+                    _context.SaveChanges();
+                    return bed;
+                }
+                return null;
+            }
+            return null;
         }
     }
 }

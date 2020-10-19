@@ -61,8 +61,15 @@ namespace AlertToCare_Tests.MockRepository
 
         public BedDataModel UpdateBed(BedDataModel _bedDetailsChanges)
         {
-            BedDataModel _bed = _bedList.FirstOrDefault(e => string.Equals(e.BedId, _bedDetailsChanges.BedId));
-            return _bed;
+            BedDataModel bed = _bedList.FirstOrDefault(e => string.Equals(e.BedId, _bedDetailsChanges.BedId));
+            if (bed != null)
+            {
+                bed.BedStatus = _bedDetailsChanges.BedStatus;
+                bed.PatientId = _bedDetailsChanges.PatientId;
+                bed.IcuId = _bedDetailsChanges.IcuId;
+                return bed;
+            }
+            return null;
         }
     }
 }

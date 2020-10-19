@@ -30,7 +30,8 @@ namespace AlertToCare_Tests.MockRepository
         }
         public IcuDataModel AddIcu(IcuDataModel icu)
         {
-            if(icu != null && CheckValidity(icu))
+            IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, icu.IcuId));
+            if (_icu==null && icu != null && CheckValidity(icu))
             {
                 icu.IcuId = _ICUList.Max(e => e.IcuId + 1);
                 _ICUList.Add(icu);
@@ -52,7 +53,11 @@ namespace AlertToCare_Tests.MockRepository
         public IcuDataModel GetIcuDetailsById(string _icuId)
         {
             IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, _icuId));
-            return _icu;
+            if (_icu != null)
+            {
+                return _icu;
+            }
+            return null;
         }
 
         public IcuDataModel RemoveIcu(string icuId)
@@ -69,7 +74,13 @@ namespace AlertToCare_Tests.MockRepository
         public IcuDataModel UpdateIcu(IcuDataModel _icuDetailsChanges)
         {
             IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, _icuDetailsChanges.IcuId));
-            return _icu;   
+            if (_icu != null)
+            {
+                _icu.TotalNoOfBeds = _icuDetailsChanges.TotalNoOfBeds;
+                _icu.Layout = _icuDetailsChanges.Layout;
+                return _icu;
+            }
+            return null;
         }
 
         public bool UpdateLayout(string icuId, string layout)

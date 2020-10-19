@@ -88,10 +88,16 @@ namespace Alert_To_Care.Controllers
         //PUT api/<PatientDataController>/5
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] PatientDataModel _patientDetailchanges)
-        { 
-             _patientDetailchanges.PatientId = id;
-            var result = _patientdatabase.UpdatePatient(_patientDetailchanges);
-             return Ok(result);   
+        {
+            if (_patientDetailchanges.PatientId == id)
+            {
+                var result = _patientdatabase.UpdatePatient(_patientDetailchanges);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+            }
+            return BadRequest(); 
         }
         
     }

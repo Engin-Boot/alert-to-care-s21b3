@@ -21,35 +21,41 @@ namespace Alert_To_Care.Controllers
 
         // GET: api/<VitalDataController>
         [HttpGet]
-        public IEnumerable<VitalsDataModel> Get()
+        public IActionResult Get()
         {
-            return _vitaldatabase.GetAll();
+            var result = _vitaldatabase.GetAll();
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
 
         }
 
 
         // GET: api/<VitalDataController>
         [HttpGet("{id}")]
-        public VitalsDataModel Get(string id)
+        public IActionResult Get(string id)
         {
-            VitalsDataModel _vital = default(VitalsDataModel);
-            foreach (VitalsDataModel _vitalTemp in _vitaldatabase.GetAll())
+            VitalsDataModel _vital = _vitaldatabase.GetAllVital(id);
+            if (_vital != null)
             {
-                if (String.Equals(_vitalTemp.PatientId, id))
-                {
-                    _vital = _vitalTemp;
-                    break;
-                }
+                return Ok(_vital);
             }
-            return _vital;
+            return BadRequest();
         }
 
         // GET api/<VitalDataController>/5
         [HttpGet]
         [Route("[action]/{id}")]
-        public string CheckVitalAndAlert(string id)
+        public IActionResult CheckVitalAndAlert(string id)
         {
-            return _vitaldatabase.CheckVital(id);
+            string alert = _vitaldatabase.CheckVital(id);
+            if (alert == null)
+            {
+                return BadRequest();
+            }
+            return Ok(alert);
         }
 
 
@@ -57,26 +63,41 @@ namespace Alert_To_Care.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] VitalsDataModel vital)
         {
-            _vitaldatabase.NewVitalAdd(vital);
-            return Ok();
+            var result = _vitaldatabase.NewVitalAdd(vital);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest();
         }
 
         // DELETE api/<VitalDataController>/5
         [HttpDelete("{id}")]
-        public VitalsDataModel Delete(string id)
+        public IActionResult Delete(string id)
         {
             VitalsDataModel vital = _vitaldatabase.RemoveVital(id);
-            return vital;
+            if (vital != null)
+            {
+                return Ok(vital);
+            }
+
+            return BadRequest();
         }
 
         //PUT api/<VitalDataController>/5
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] VitalsDataModel _vitalDetailchanges)
         {
-            _vitalDetailchanges.PatientId = id;
-            var result = _vitaldatabase.UpdatePatientVitals(_vitalDetailchanges);
-            return Ok(result);
-
+            if (_vitalDetailchanges.PatientId == id)
+            {
+                var result = _vitaldatabase.UpdatePatientVitals(_vitalDetailchanges);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+            }
+            return BadRequest();
         }
     }
 }

@@ -61,10 +61,31 @@ namespace Alert_To_Care.SQLRepository
 
         public PatientDataModel UpdatePatient(PatientDataModel patientDetailChanges)
         {
-            //var _patient = _context.Patients.Attach(patientDetailChanges);
-            // _patient.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            
-                _context.Patients.Update(patientDetailChanges);
+
+            string _id = patientDetailChanges.PatientId;
+            if (_context.Patients.Find(_id) != null)
+            {
+                PatientDataModel patient = _context.Patients.Find(_id);
+                if (patient != null)
+                {
+                    patient.PatientName = patientDetailChanges.PatientName;
+                    patient.PatientAge = patientDetailChanges.PatientAge;
+                    patient.Email = patientDetailChanges.Email;
+                    patient.BedId = patientDetailChanges.BedId;
+                    patient.ContactNo = patientDetailChanges.ContactNo;
+                    patient.Address = patientDetailChanges.Address;
+                    _context.SaveChanges();
+                    return patient;
+                }
+                return null;
+            }
+            return null;
+
+
+
+
+
+            _context.Patients.Update(patientDetailChanges);
                 _context.SaveChanges();
                 return patientDetailChanges;
             

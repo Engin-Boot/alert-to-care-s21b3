@@ -102,10 +102,16 @@ namespace Alert_To_Care.Controllers
         // PUT api/<IcuDataController>/5
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] IcuDataModel _icuDetailsChanges)
-        {   
-                _icuDetailsChanges.IcuId = id;
+        {
+            if (_icuDetailsChanges.IcuId == id)
+            {
                 var result = _icudatabase.UpdateIcu(_icuDetailsChanges);
-                return Ok(result);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+            }
+            return BadRequest();
             
         }
 
