@@ -59,14 +59,11 @@ namespace Alert_To_Care.SQLRepository
 
         public IcuDataModel UpdateIcu(IcuDataModel _icuDetailsChanges)
         {
-            IcuDataModel icu = _context.Icu.Find(_icuDetailsChanges.IcuId);
-            if (icu != null)
-            {
-                _context.Icu.Update(_icuDetailsChanges);
-                _context.SaveChanges();
-                return _icuDetailsChanges;
-            }
+           
+            _context.Icu.Update(_icuDetailsChanges);
+            _context.SaveChanges();
             return _icuDetailsChanges;
+
         }
 
         public bool UpdateLayout(string icuId, string layout)
