@@ -50,17 +50,24 @@ namespace Alert_To_Care.SQLRepository
 
         public BedDataModel BedInfoFromPatientId(string _patientId)
         {
-            BedDataModel bed = _context.Beds.Find(_patientId);
-            return bed;
+            PatientDataModel _details = _context.Patients.Find(_patientId);
+            if (_details != null)
+            {
+                BedDataModel bed = _context.Beds.Find(_details.BedId);
+                return bed;
+            }
+            return null;
         }
 
         public PatientDataModel UpdatePatient(PatientDataModel patientDetailChanges)
         {
-            var _patient = _context.Patients.Attach(patientDetailChanges);
-            _patient.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _context.SaveChanges();
-
-            return patientDetailChanges;
+            //var _patient = _context.Patients.Attach(patientDetailChanges);
+            // _patient.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            
+                _context.Patients.Update(patientDetailChanges);
+                _context.SaveChanges();
+                return patientDetailChanges;
+            
         }
 
         

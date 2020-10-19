@@ -75,8 +75,8 @@ namespace Alert_To_Care.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] BedDataModel _bedDetails)
         {
-                _bedDetails.IcuId = id;
-                var result = _bedDatabase.UpdateBed(_bedDetails);
+           _bedDetails.BedId = id;
+           var result = _bedDatabase.UpdateBed(_bedDetails);
                 return Ok(result);
         }
 
@@ -84,12 +84,11 @@ namespace Alert_To_Care.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            var _checkBed = _bedDatabase.GetBedDetailsById(id);
-            if(_checkBed != null)
+            var result = _bedDatabase.RemoveBed(id);
+            if(result != null)
             {
-                var result = _bedDatabase.RemoveBed(id);
                 return Ok(result);
-            }
+            }   
             return BadRequest();
         }
     }

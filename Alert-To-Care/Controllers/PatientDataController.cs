@@ -50,11 +50,10 @@ namespace Alert_To_Care.Controllers
         [Route("[action]/{id}")]
         public IActionResult GetBedInfo(string id)
         {
-            var _patientInfo = _patientdatabase.GetPatientInfoFromId(id);
+            var _patientInfo = _patientdatabase.BedInfoFromPatientId(id);
             if(_patientInfo != null)
             {
-                var _bedId = _patientInfo.BedId;
-                return Ok(_patientdatabase.BedInfoFromPatientId(_bedId));
+                return Ok(_patientInfo);
             }
             return BadRequest();
         }
@@ -90,12 +89,10 @@ namespace Alert_To_Care.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] PatientDataModel _patientDetailchanges)
         { 
-                _patientDetailchanges.PatientId = id;
-                var result = _patientdatabase.UpdatePatient(_patientDetailchanges);
-                return Ok(result);
-          
+             _patientDetailchanges.PatientId = id;
+            var result = _patientdatabase.UpdatePatient(_patientDetailchanges);
+             return Ok(result);   
         }
-
         
     }
 }
