@@ -32,8 +32,9 @@ namespace Alert_To_Care.SQLRepository
             {
                 _context.Patients.Remove(patient);
                 _context.SaveChanges();
+                return patient;
             }
-            return patient;
+            return null ;
         }
 
         public PatientDataModel GetPatientInfoFromId(string patientId)

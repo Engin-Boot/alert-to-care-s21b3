@@ -89,10 +89,10 @@ namespace Alert_To_Care.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            IcuDataModel _icu=_icudatabase.RemoveIcu(id);
-            if(_icu != null)
+            IcuDataModel result =_icudatabase.RemoveIcu(id);
+            if(result != null)
             {
-                return Ok(_icu);
+                return Ok(result);
             }
             return BadRequest();
         }

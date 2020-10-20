@@ -18,9 +18,13 @@ namespace Alert_To_Care.SQLRepository
         }
         public BedDataModel AddBed(BedDataModel _bed)
         {
-            _context.Beds.Add(_bed);
-            _context.SaveChanges();
-            return _bed;
+            if(_bed != null)
+            {
+                _context.Beds.Add(_bed);
+                _context.SaveChanges();
+                return _bed;
+            }
+            return null;
         }
 
         public IEnumerable<BedDataModel> GetAllBedInfo()
@@ -31,7 +35,11 @@ namespace Alert_To_Care.SQLRepository
         public BedDataModel GetBedDetailsById(string _bedId)
         {
             BedDataModel _bedDetails = _context.Beds.Find(_bedId);
-            return _bedDetails;
+            if(_bedDetails!= null)
+            {
+                return _bedDetails;
+            }
+            return null;
         }
 
         public BedDataModel RemoveBed(string _bedId)
@@ -41,8 +49,9 @@ namespace Alert_To_Care.SQLRepository
             {
                 _context.Beds.Remove(_bed);
                 _context.SaveChanges();
+                return _bed;
             }
-            return _bed;
+            return null;
         }
 
         public BedDataModel UpdateBed(BedDataModel _bedDetailsChanges)

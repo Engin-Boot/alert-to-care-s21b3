@@ -58,8 +58,9 @@ namespace Alert_To_Care.SQLRepository
             {
                 _context.Icu.Remove(icu);
                 _context.SaveChanges();
+                return icu;
             }
-            return icu;
+            return null;
         }
 
         public IcuDataModel UpdateIcu(IcuDataModel _icuDetailsChanges)

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using System.Net;
@@ -9,11 +9,11 @@ using Alert_To_Care.Models;
 namespace AlertToCare_AutomatedTests
 {
     [TestClass]
-    public class ICUDataControllerTests
+    public class BedDataControllerTests
     {
-        private static string url = "http://localhost:56954/api/icudata";
+        private static string url = "http://localhost:56954/api/beddata";
         [TestMethod]
-        public void TestGetAllICUData()
+        public void TestGetAllBedData()
         {
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
@@ -22,146 +22,130 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestGetICUDataByValidID()
-        {
-            var client = new RestClient(url);
-            var request = new RestRequest("{postid}",Method.GET);
-            request.AddUrlSegment("postid","3");
-            var response = client.Execute(request);
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-
-        }
-        [TestMethod]
-        public void TestGetICUDataByInValidID()
+        public void TestGetBedDataByValidID()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.GET);
-            request.AddUrlSegment("postid", "77");
-            var response = client.Execute(request);
-            Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-
-        }
-        [TestMethod]
-        public void TestPostICUDataByValidID()
-        {
-            var client = new RestClient(url);
-            var request = new RestRequest(Method.POST);
-            var _icuData = new IcuDataModel()
-            {
-                IcuId = "6",
-                Layout = "sq",
-                TotalNoOfBeds = 15
-            };
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_icuData);
+            request.AddUrlSegment("postid", "21");
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPostICUDataByInValidID()
+        public void TestGetBedDataByInValidID()
         {
             var client = new RestClient(url);
-            var request = new RestRequest(Method.POST);
-            var _icuData = new IcuDataModel();
-            request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_icuData);
+            var request = new RestRequest("{postid}", Method.GET);
+            request.AddUrlSegment("postid", "90");
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPutICUDataByValidID()
+        public void TestPostBedDataByValidID()
         {
             var client = new RestClient(url);
-            var request = new RestRequest("{postid}",Method.PUT);
-            request.AddUrlSegment("postid", "4");
-            var _icuDataUpdate = new IcuDataModel()
+            var request = new RestRequest(Method.POST);
+            var _bedData = new BedDataModel()
             {
-                IcuId = "4",
-                Layout = "sq",
-                TotalNoOfBeds = 16
+                BedId = "26",
+                IcuId = "19",
+                BedStatus= true,
+                PatientId = "60"
+                
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_icuDataUpdate);
+            request.AddJsonBody(_bedData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPutICUDataByInValidID()
+        public void TestPostBedDataByInValidID()
+        {
+            var client = new RestClient(url);
+            var request = new RestRequest(Method.POST);
+            BedDataModel _bedData = null;
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(_bedData);
+            var response = client.Execute(request);
+            Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
+
+        }
+        [TestMethod]
+        public void TestPutBedDataByValidID()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.PUT);
-            request.AddUrlSegment("postid", "99");
-            var _icuDataUpdate = new IcuDataModel()
+            request.AddUrlSegment("postid", "23");
+            var _bedDataUpdate = new BedDataModel()
             {
-                IcuId = "99",
-                Layout = "sq",
-                TotalNoOfBeds = 23
+                BedId = "23",
+                IcuId = "15",
+                BedStatus = true,
+                PatientId = "31"
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_icuDataUpdate);
+            request.AddJsonBody(_bedDataUpdate);
+            var response = client.Execute(request);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+        }
+        [TestMethod]
+        public void TestPutBedDataByInValidID()
+        {
+            var client = new RestClient(url);
+            var request = new RestRequest("{postid}", Method.PUT);
+            request.AddUrlSegment("postid", "678");
+            var _dataUpdate = new BedDataModel()
+            {
+                BedId = "678",
+                BedStatus = false
+            };
+            request.AddHeader("Content-Type", "application/json");
+            request.AddJsonBody(_dataUpdate);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestDeleteICUDataByValidID()
+        public void TestDeleteBedDataByValidID()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.DELETE);
-            request.AddUrlSegment("postid", "7");
+            request.AddUrlSegment("postid", "25");
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
         [TestMethod]
-        public void TestDeleteICUDataByInValidID()
+        public void TestDeleteBedDataByInValidID()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.DELETE);
-            request.AddUrlSegment("postid", "6h");
+            request.AddUrlSegment("postid", "6");
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestGetLayoutByValidID()
+        public void TestGetBedStatusByValidID()
         {
             var client = new RestClient(url);
-            var request = new RestRequest("/getlayout/{postid}", Method.GET);
-            request.AddUrlSegment("postid", "1");
+            var request = new RestRequest("/getbedstatus/{postid}", Method.GET);
+            request.AddUrlSegment("postid", "21");
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestGetLayoutByInValidID()
+        public void TestGetBedStatusByInValidID()
         {
             var client = new RestClient(url);
             var request = new RestRequest("/getlayout/{postid}", Method.GET);
-            request.AddUrlSegment("postid", "44");
+            request.AddUrlSegment("postid", "60");
             var response = client.Execute(request);
-            Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
 
-        }
-        [TestMethod]
-        public void TestGetBedsByValidID()
-        {
-            var client = new RestClient(url);
-            var request = new RestRequest("/getbeds/{postid}", Method.GET);
-            request.AddUrlSegment("postid", "2");
-            var response = client.Execute(request);
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-        }
-        [TestMethod]
-        public void TestGetBedsByInValidID()
-        {
-            var client = new RestClient(url);
-            var request = new RestRequest("/getbeds/{postid}", Method.GET);
-            request.AddUrlSegment("postid", "9g");
-            var response = client.Execute(request);
-            Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
     }
 }
