@@ -25,8 +25,8 @@ namespace Alert_To_Care.SQLRepository
         }
         public IcuDataModel AddIcu(IcuDataModel icu)
         {
-            IcuDataModel _icu = _context.Icu.Find(icu.IcuId);
-            if (_icu==null && icu != null && CheckValidity(icu))
+            //IcuDataModel _icu = _context.Icu.Find(icu.IcuId);
+            if ( icu != null && CheckValidity(icu))
             {
                 _context.Icu.Add(icu);
                 _context.SaveChanges();

@@ -85,9 +85,9 @@ namespace Alert_To_Care.SQLRepository
 
 
 
-            _context.Patients.Update(patientDetailChanges);
-                _context.SaveChanges();
-                return patientDetailChanges;
+            //_context.Patients.Update(patientDetailChanges);
+             //   _context.SaveChanges();
+              //  return patientDetailChanges;
             
         }
 

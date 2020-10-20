@@ -98,7 +98,6 @@ C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcorea
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\TechTalk.SpecFlow.dll
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
-C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\System.Security.Permissions.dll
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\Utf8Json.dll
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\Dynamitey.dll
@@ -106,3 +105,10 @@ C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcorea
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\AlertToCare-AutomatedTests.pdb
+C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\obj\Debug\netcoreapp3.1\AlertToCare-AutomatedTests.csproj.CoreCompileInputs.cache
+C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\obj\Debug\netcoreapp3.1\AlertToCare-AutomatedTests.dll
+C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\obj\Debug\netcoreapp3.1\AlertToCare-AutomatedTests.pdb
+C:\Users\MEITY\alert-to-care-s21b3\AlertToCare-AutomatedTests\bin\Debug\netcoreapp3.1\System.Security.Permissions.dll
