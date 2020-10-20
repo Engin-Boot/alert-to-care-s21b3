@@ -30,8 +30,8 @@ namespace AlertToCare_Tests.MockRepository
         }
         public IcuDataModel AddIcu(IcuDataModel icu)
         {
-            IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, icu.IcuId));
-            if (_icu==null && icu != null && CheckValidity(icu))
+           // IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, icu.IcuId));
+            if (icu != null && CheckValidity(icu))
             {
                 icu.IcuId = _ICUList.Max(e => e.IcuId + 1);
                 _ICUList.Add(icu);
