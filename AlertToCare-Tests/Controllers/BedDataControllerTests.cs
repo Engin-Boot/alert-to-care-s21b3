@@ -85,7 +85,7 @@ namespace AlertToCare_Tests.Controllers
         public void WhenGivenValidIDPutExecutes()
         {
             BedDataController _controller = new BedDataController(_bedOperations);
-            var _changes = new BedDataModel() { BedStatus = true, PatientId="4" };
+            var _changes = new BedDataModel() { BedId="12", BedStatus = true, PatientId="4" };
             var _response = _controller.Put("12", _changes);
             var _responseObject = _response as OkObjectResult;
             Assert.Equal(200, _responseObject.StatusCode);

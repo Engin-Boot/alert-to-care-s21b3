@@ -8397,19 +8397,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ekta\\.nuget\\packages\\": {}
+    "C:\\Users\\MEITY\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ekta\\Desktop\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj",
+      "projectUniqueName": "C:\\Users\\MEITY\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj",
       "projectName": "AlertToCare-Tests",
-      "projectPath": "C:\\Users\\Ekta\\Desktop\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj",
-      "packagesPath": "C:\\Users\\Ekta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ekta\\Desktop\\alert-to-care-s21b3\\AlertToCare-Tests\\obj\\",
+      "projectPath": "C:\\Users\\MEITY\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj",
+      "packagesPath": "C:\\Users\\MEITY\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MEITY\\alert-to-care-s21b3\\AlertToCare-Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Ekta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MEITY\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8422,8 +8422,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Ekta\\Desktop\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj": {
-              "projectPath": "C:\\Users\\Ekta\\Desktop\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj"
+            "C:\\Users\\MEITY\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj": {
+              "projectPath": "C:\\Users\\MEITY\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj"
             }
           }
         }

@@ -34,7 +34,7 @@ namespace AlertToCare_Tests.Controllers
         public void WhenGivenNullDataPostICUFails()
         {
             IcuDataController _controller = new IcuDataController(_IcuOperations);
-            IcuDataModel _icu = null;
+            IcuDataModel _icu = new IcuDataModel();
             var _response = _controller.Post(_icu);
             var _responseObject = _response as BadRequestResult;
             Assert.Equal(400, _responseObject.StatusCode);
@@ -98,8 +98,8 @@ namespace AlertToCare_Tests.Controllers
         public void WhenGivenValidIDPutExecutes()
         {
             IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _changes = new IcuDataModel() { TotalNoOfBeds = 20 };
-            var _response = _controller.Put("2",_changes);
+            var _changes = new IcuDataModel() { IcuId = "1", TotalNoOfBeds = 20, Layout = "L" };
+            var _response = _controller.Put("1",_changes);
             var _responseObject = _response as OkObjectResult;
             Assert.Equal(200, _responseObject.StatusCode);
         }
