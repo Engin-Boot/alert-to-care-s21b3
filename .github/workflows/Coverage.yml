@@ -20,7 +20,7 @@ jobs:
         run: dotnet test AlertToCare-Tests --configuration Release
         
       - name: Generate coverage report
-        run: dotnet test --collect:"XPlat Code Coverage"
+        run: dotnet test AlertToCare-Tests --collect:"XPlat Code Coverage"
       
       - name: Check Coverage
         run: powershell ./coverage.ps1 -linerate 1
