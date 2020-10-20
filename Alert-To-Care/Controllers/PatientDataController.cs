@@ -50,7 +50,7 @@ namespace Alert_To_Care.Controllers
         [Route("[action]/{id}")]
         public IActionResult GetBedInfo(string id)
         {
-            var _patientInfo = _patientdatabase.BedInfoFromPatientId(id);
+            BedDataModel _patientInfo = _patientdatabase.BedInfoFromPatientId(id);
             if(_patientInfo != null)
             {
                 return Ok(_patientInfo);

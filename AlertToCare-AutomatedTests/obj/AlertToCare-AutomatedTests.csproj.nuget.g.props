@@ -5,7 +5,7 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\MEITY\.nuget\packages\</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Ekta\.nuget\packages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.7.0</NuGetToolVersion>
   </PropertyGroup>
@@ -24,7 +24,7 @@
     <Import Project="$(NuGetPackageRoot)mstest.testadapter\2.1.2\build\netcoreapp1.0\MSTest.TestAdapter.props" Condition="Exists('$(NuGetPackageRoot)mstest.testadapter\2.1.2\build\netcoreapp1.0\MSTest.TestAdapter.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">C:\Users\MEITY\.nuget\packages\xunit.analyzers\0.10.0</Pkgxunit_analyzers>
-    <PkgBoDi Condition=" '$(PkgBoDi)' == '' ">C:\Users\MEITY\.nuget\packages\bodi\1.4.1</PkgBoDi>
+    <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">C:\Users\Ekta\.nuget\packages\xunit.analyzers\0.10.0</Pkgxunit_analyzers>
+    <PkgBoDi Condition=" '$(PkgBoDi)' == '' ">C:\Users\Ekta\.nuget\packages\bodi\1.4.1</PkgBoDi>
   </PropertyGroup>
 </Project>
