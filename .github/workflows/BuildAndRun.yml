@@ -8,6 +8,9 @@ jobs:
   build:
  
     runs-on: windows-latest
+     
+    env:
+      Solution_Name: Alert-To-Care/Alert-To-Care.sln 
  
     steps:
     - uses: actions/checkout@v1
