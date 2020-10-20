@@ -19,4 +19,4 @@ jobs:
     - name: Build with dotnet
       run: dotnet build Alert-To-Care
     - name: Run unit tests
-      run: dotnet test Alert-To-Care --logger "console;verbosity=detailed";
+      run: dotnet test AlertToCare-Tests
