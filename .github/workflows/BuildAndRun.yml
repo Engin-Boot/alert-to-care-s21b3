@@ -9,16 +9,14 @@ jobs:
  
     runs-on: windows-latest
      
-    env:
-      Solution_Name: Alert-To-Care/Alert-To-Care.sln 
  
     steps:
     - uses: actions/checkout@v1
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.100
+        dotnet-version: 3.1.8
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: dotnet build Alert-To-Care
     - name: Run unit tests
-      run: dotnet test --no-build --configuration Release
+      run: dotnet test Alert-To-Care --logger "console;verbosity=detailed";
