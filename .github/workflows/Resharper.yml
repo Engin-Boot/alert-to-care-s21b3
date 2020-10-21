@@ -19,13 +19,13 @@ jobs:
         run: dotnet tool install -g JetBrains.ReSharper.GlobalTools
               
       - name: Add packages
-        run: dotnet add Alert-To-Care-Tests/Alert-To-Care-Tests.csproj package xunit --version 2.4.0
+        run: dotnet add AlertToCare-Tests/AlertToCare-Tests.csproj package xunit --version 2.4.0
 
       - name: Add packages
         run: dotnet add AlertToCare-AutomatedTests/AlertToCare-AutomatedTests.csproj package xunit --version 2.4.0
               
       - name: Add packages
-        run: dotnet add AlertToCare/AlertToCare.csproj package Microsoft.EntityFrameworkCore --version 3.1.9
+        run: dotnet add Alert-To-Care/Alert-To-Care.csproj package Microsoft.EntityFrameworkCore --version 3.1.9
         
       - name: Run resharper inspection
         run: jb inspectcode Alert-To-Care/Alert-To-Care.sln /output=insreport.xml
