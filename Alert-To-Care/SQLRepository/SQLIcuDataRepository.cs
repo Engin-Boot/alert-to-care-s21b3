@@ -1,17 +1,14 @@
 ﻿using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Alert_To_Care.SQLRepository
 {
-    public class SQLIcuDataRepository:IIcuDataRepository
+    public class SqlIcuDataRepository:IIcuDataRepository
     {
         private readonly Database _context;
 
-        public SQLIcuDataRepository(Database context)
+        public SqlIcuDataRepository(Database context)
         {
             _context = context;
         }
@@ -44,11 +41,7 @@ namespace Alert_To_Care.SQLRepository
         public IcuDataModel GetIcuDetailsById(string icuId)
         {
             IcuDataModel icu = _context.Icu.Find(icuId);
-            if (icu != null)
-            {
-                return icu;
-            }
-            return null;
+            return icu;
         }
 
         public IcuDataModel RemoveIcu(string icuId)
@@ -63,16 +56,16 @@ namespace Alert_To_Care.SQLRepository
             return null;
         }
 
-        public IcuDataModel UpdateIcu(IcuDataModel _icuDetailsChanges)
+        public IcuDataModel UpdateIcu(IcuDataModel icuDetailsChanges)
         {
-            string _id =_icuDetailsChanges.IcuId;
-            if (_context.Icu.Find(_id) != null)
+            string id =icuDetailsChanges.IcuId;
+            if (_context.Icu.Find(id) != null)
             {
-                IcuDataModel icu = _context.Icu.Find(_id);
+                IcuDataModel icu = _context.Icu.Find(id);
                 if (icu != null)
                 {
-                    icu.Layout = _icuDetailsChanges.Layout;
-                    icu.TotalNoOfBeds = _icuDetailsChanges.TotalNoOfBeds;
+                    icu.Layout = icuDetailsChanges.Layout;
+                    icu.TotalNoOfBeds = icuDetailsChanges.TotalNoOfBeds;
                     _context.SaveChanges();
                     return icu;
                 }

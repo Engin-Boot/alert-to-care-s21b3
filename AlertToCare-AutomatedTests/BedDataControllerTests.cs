@@ -1,9 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using System.Net;
-using Gherkin;
-using Newtonsoft.Json;
 using Alert_To_Care.Models;
 
 namespace AlertToCare_AutomatedTests
@@ -11,7 +8,7 @@ namespace AlertToCare_AutomatedTests
     [TestClass]
     public class BedDataControllerTests
     {
-        private static string url = "http://localhost:56954/api/beddata";
+        private static string url = "http://localhost:5000/api/beddata";
         [TestMethod]
         public void TestGetAllBedData()
         {
@@ -22,7 +19,7 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestGetBedDataByValidID()
+        public void TestGetBedDataByValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.GET);
@@ -32,7 +29,7 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestGetBedDataByInValidID()
+        public void TestGetBedDataByInValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.GET);
@@ -42,11 +39,11 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestPostBedDataByValidID()
+        public void TestPostBedDataByValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest(Method.POST);
-            var _bedData = new BedDataModel()
+            var bedData = new BedDataModel()
             {
                 BedId = "26",
                 IcuId = "19",
@@ -55,30 +52,30 @@ namespace AlertToCare_AutomatedTests
                 
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_bedData);
+            request.AddJsonBody(bedData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPostBedDataByInValidID()
+        public void TestPostBedDataByInValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest(Method.POST);
-            BedDataModel _bedData = null;
+            BedDataModel bedData = null;
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_bedData);
+            request.AddJsonBody(bedData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPutBedDataByValidID()
+        public void TestPutBedDataByValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.PUT);
             request.AddUrlSegment("postid", "23");
-            var _bedDataUpdate = new BedDataModel()
+            var bedDataUpdate = new BedDataModel()
             {
                 BedId = "23",
                 IcuId = "15",
@@ -86,30 +83,30 @@ namespace AlertToCare_AutomatedTests
                 PatientId = "31"
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_bedDataUpdate);
+            request.AddJsonBody(bedDataUpdate);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPutBedDataByInValidID()
+        public void TestPutBedDataByInValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.PUT);
             request.AddUrlSegment("postid", "678");
-            var _dataUpdate = new BedDataModel()
+            var dataUpdate = new BedDataModel()
             {
                 BedId = "678",
                 BedStatus = false
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_dataUpdate);
+            request.AddJsonBody(dataUpdate);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestDeleteBedDataByValidID()
+        public void TestDeleteBedDataByValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.DELETE);
@@ -118,7 +115,7 @@ namespace AlertToCare_AutomatedTests
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
         [TestMethod]
-        public void TestDeleteBedDataByInValidID()
+        public void TestDeleteBedDataByInValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest("{postid}", Method.DELETE);
@@ -128,7 +125,7 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestGetBedStatusByValidID()
+        public void TestGetBedStatusByValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest("/getbedstatus/{postid}", Method.GET);
@@ -138,7 +135,7 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestGetBedStatusByInValidID()
+        public void TestGetBedStatusByInValidId()
         {
             var client = new RestClient(url);
             var request = new RestRequest("/getlayout/{postid}", Method.GET);

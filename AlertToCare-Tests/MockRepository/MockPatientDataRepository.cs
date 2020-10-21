@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
 
-namespace AlertToCare_Tests.MockRepository 
+namespace AlertToCare_Tests.MockRepository
 {
     class MockPatientDataRepository : IPatientDataRepository
     {
-        private List<PatientDataModel> _patientList;
+        private readonly List<PatientDataModel> _patientList;
         
         public MockPatientDataRepository()
         {
@@ -22,11 +20,7 @@ namespace AlertToCare_Tests.MockRepository
         }
         public IEnumerable<PatientDataModel> GetAllPatients()
         {
-            if(_patientList != null)
-            {
-                return _patientList;
-            }
-            return null;
+            return _patientList;
         }
 
         public PatientDataModel NewPatientAdd(PatientDataModel patient)
@@ -42,24 +36,24 @@ namespace AlertToCare_Tests.MockRepository
 
         public PatientDataModel GetPatientInfoFromId(string patientId)
         {
-            PatientDataModel _patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
-            return _patient;
+            PatientDataModel patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
+            return patient;
             
         }
         public BedDataModel BedInfoFromPatientId(string patientId)
         {
-            PatientDataModel _patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
-            if(_patient != null)
+            PatientDataModel patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
+            if(patient != null)
             {
-                BedDataModel _bed = new BedDataModel()
+                BedDataModel bed = new BedDataModel()
                 {
-                    BedId = _patient.BedId,
+                    BedId = patient.BedId,
                     IcuId = "1",
                     BedStatus = true,
                     PatientId = "6"
                     
                 };
-                return _bed;
+                return bed;
             }
             return null;
         }
@@ -67,11 +61,11 @@ namespace AlertToCare_Tests.MockRepository
         public PatientDataModel DischargePatient(string patientId)
         {
             PatientDataModel patient = _patientList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
-                if (patient != null)
-                {
-                    _patientList.Remove(patient);
-                }
-               return patient;
+            if (patient != null)
+            {
+                _patientList.Remove(patient);
+            }
+            return patient;
         }
 
         public PatientDataModel UpdatePatient(PatientDataModel patientDetailChanges)

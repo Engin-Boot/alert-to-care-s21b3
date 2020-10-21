@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
 
@@ -10,7 +8,7 @@ namespace AlertToCare_Tests.MockRepository
 {
     class MockBedDataRepository : IBedDataRepository
     {
-        private List<BedDataModel> _bedList;
+        private readonly List<BedDataModel> _bedList;
 
         public MockBedDataRepository()
         {
@@ -21,13 +19,13 @@ namespace AlertToCare_Tests.MockRepository
             };
 
         }
-        public BedDataModel AddBed(BedDataModel _bed)
+        public BedDataModel AddBed(BedDataModel bed)
         {
-            if (_bed != null)
+            if (bed != null)
             {
-                _bed.BedId = _bedList.Max(e => e.IcuId + 1);
-                _bedList.Add(_bed);
-                return _bed;
+                bed.BedId = _bedList.Max(e => e.IcuId + 1);
+                _bedList.Add(bed);
+                return bed;
 
             }
             return null;
@@ -35,38 +33,34 @@ namespace AlertToCare_Tests.MockRepository
 
         public IEnumerable<BedDataModel> GetAllBedInfo()
         {
-            if (_bedList != null)
-            {
-                return _bedList;
-            }
-            return null;
+            return _bedList;
         }
 
-        public BedDataModel GetBedDetailsById(string _bedId)
+        public BedDataModel GetBedDetailsById(string bedId)
         {
-            BedDataModel _bed = _bedList.FirstOrDefault(e => string.Equals(e.BedId, _bedId));
-            return _bed;
+            BedDataModel bed = _bedList.FirstOrDefault(e => string.Equals(e.BedId, bedId));
+            return bed;
         }
 
-        public BedDataModel RemoveBed(string _bedId)
+        public BedDataModel RemoveBed(string bedId)
         {
-            BedDataModel _bed = _bedList.FirstOrDefault(e => string.Equals(e.BedId, _bedId));
-            if (_bed != null)
-            {
-                _bedList.Remove(_bed);
-                return _bed;
-            }
-            return null;
-        }
-
-        public BedDataModel UpdateBed(BedDataModel _bedDetailsChanges)
-        {
-            BedDataModel bed = _bedList.FirstOrDefault(e => string.Equals(e.BedId, _bedDetailsChanges.BedId));
+            BedDataModel bed = _bedList.FirstOrDefault(e => string.Equals(e.BedId, bedId));
             if (bed != null)
             {
-                bed.BedStatus = _bedDetailsChanges.BedStatus;
-                bed.PatientId = _bedDetailsChanges.PatientId;
-                bed.IcuId = _bedDetailsChanges.IcuId;
+                _bedList.Remove(bed);
+                return bed;
+            }
+            return null;
+        }
+
+        public BedDataModel UpdateBed(BedDataModel bedDetailsChanges)
+        {
+            BedDataModel bed = _bedList.FirstOrDefault(e => string.Equals(e.BedId, bedDetailsChanges.BedId));
+            if (bed != null)
+            {
+                bed.BedStatus = bedDetailsChanges.BedStatus;
+                bed.PatientId = bedDetailsChanges.PatientId;
+                bed.IcuId = bedDetailsChanges.IcuId;
                 return bed;
             }
             return null;

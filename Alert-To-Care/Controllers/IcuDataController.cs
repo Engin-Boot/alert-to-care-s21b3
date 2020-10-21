@@ -12,11 +12,11 @@ namespace Alert_To_Care.Controllers
     public class IcuDataController : ControllerBase
     {
 
-        IIcuDataRepository _icudatabase;
+        private readonly IIcuDataRepository _icudatabase;
 
         public IcuDataController(IIcuDataRepository repo)
         {
-            this._icudatabase = repo;
+            _icudatabase = repo;
         }
 
         // GET: api/<IcuDataController>
@@ -35,10 +35,10 @@ namespace Alert_To_Care.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            IcuDataModel _icu = _icudatabase.GetIcuDetailsById(id);
-            if(_icu != null)
+            IcuDataModel icu = _icudatabase.GetIcuDetailsById(id);
+            if(icu != null)
             {
-                return Ok(_icu);
+                return Ok(icu);
             }
             return BadRequest();
         }
@@ -47,25 +47,24 @@ namespace Alert_To_Care.Controllers
         [Route("[action]/{id}")]        
         public IActionResult GetLayout(string id)
         {
-            IcuDataModel _icu = _icudatabase.GetIcuDetailsById(id);
-            if(_icu != null)
+            IcuDataModel icu = _icudatabase.GetIcuDetailsById(id);
+            if(icu != null)
             {
-                string layout = _icu.Layout;
+                string layout = icu.Layout;
                 return Ok(layout);
 
             }
             return BadRequest();
-            
-
         }
+
         [HttpGet]
         [Route("[action]/{id}")]
         public IActionResult GetBeds(string id)
         {
-            IcuDataModel _icu = _icudatabase.GetIcuDetailsById(id);
-            if (_icu != null)
+            IcuDataModel icu = _icudatabase.GetIcuDetailsById(id);
+            if (icu != null)
             {
-                int bedNo = _icu.TotalNoOfBeds;
+                int bedNo = icu.TotalNoOfBeds;
                 return Ok(bedNo);
             }
             return BadRequest();
@@ -76,11 +75,11 @@ namespace Alert_To_Care.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] IcuDataModel icu)
         {
-             var result = _icudatabase.AddIcu(icu);
-                if(result != null)
-                {
-                    return Ok(result);
-                }
+            var result = _icudatabase.AddIcu(icu);
+            if(result != null)
+            {
+                return Ok(result);
+            }
                 
             return BadRequest();
         }
@@ -101,11 +100,11 @@ namespace Alert_To_Care.Controllers
 
         // PUT api/<IcuDataController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(string id, [FromBody] IcuDataModel _icuDetailsChanges)
+        public IActionResult Put(string id, [FromBody] IcuDataModel icuDetailsChanges)
         {
-            if (_icuDetailsChanges.IcuId == id)
+            if (icuDetailsChanges.IcuId == id)
             {
-                var result = _icudatabase.UpdateIcu(_icuDetailsChanges);
+                var result = _icudatabase.UpdateIcu(icuDetailsChanges);
                 if (result != null)
                 {
                     return Ok(result);

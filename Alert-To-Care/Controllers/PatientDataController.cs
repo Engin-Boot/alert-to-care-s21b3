@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
 
@@ -15,21 +11,21 @@ namespace Alert_To_Care.Controllers
     [ApiController]
     public class PatientDataController : ControllerBase
     {
-        IPatientDataRepository _patientdatabase;
+        private readonly IPatientDataRepository _patientdatabase;
 
         public PatientDataController(IPatientDataRepository repo)
         {
-            this._patientdatabase = repo;
+            _patientdatabase = repo;
         }
         
         //GET: api/<PatientDataController>
         [HttpGet]
         public IActionResult Get()
         {
-            var _allPatients = _patientdatabase.GetAllPatients();
-            if(_allPatients != null)
+            var allPatients = _patientdatabase.GetAllPatients();
+            if(allPatients != null)
             {
-                return Ok(_allPatients);
+                return Ok(allPatients);
             }
             return BadRequest();
         }
@@ -38,10 +34,10 @@ namespace Alert_To_Care.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            PatientDataModel _patient = _patientdatabase.GetPatientInfoFromId(id);
-            if(_patient != null)
+            PatientDataModel patient = _patientdatabase.GetPatientInfoFromId(id);
+            if(patient != null)
             {
-                return Ok(_patient);
+                return Ok(patient);
             }
             return BadRequest();
         }
@@ -50,21 +46,21 @@ namespace Alert_To_Care.Controllers
         [Route("[action]/{id}")]
         public IActionResult GetBedInfo(string id)
         {
-            BedDataModel _patientInfo = _patientdatabase.BedInfoFromPatientId(id);
-            if(_patientInfo != null)
+            BedDataModel patientInfo = _patientdatabase.BedInfoFromPatientId(id);
+            if(patientInfo != null)
             {
-                return Ok(_patientInfo);
+                return Ok(patientInfo);
             }
             return BadRequest();
         }
 
         //POST api/<PatientDataController>
         [HttpPost]
-        public IActionResult Post([FromBody] PatientDataModel _patient)
+        public IActionResult Post([FromBody] PatientDataModel patient)
         {
-            if(_patient != null)
+            if(patient != null)
             {
-                var result = _patientdatabase.NewPatientAdd(_patient);
+                var result = _patientdatabase.NewPatientAdd(patient);
                 return Ok(result);
 
             }
@@ -75,8 +71,8 @@ namespace Alert_To_Care.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            PatientDataModel _patient = _patientdatabase.GetPatientInfoFromId(id);
-            if(_patient != null)
+            PatientDataModel patient = _patientdatabase.GetPatientInfoFromId(id);
+            if(patient != null)
             {
                 var result = _patientdatabase.DischargePatient(id);
                 return Ok(result);
@@ -87,11 +83,11 @@ namespace Alert_To_Care.Controllers
 
         //PUT api/<PatientDataController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(string id, [FromBody] PatientDataModel _patientDetailchanges)
+        public IActionResult Put(string id, [FromBody] PatientDataModel patientDetailchanges)
         {
-            if (_patientDetailchanges.PatientId == id)
+            if (patientDetailchanges.PatientId == id)
             {
-                var result = _patientdatabase.UpdatePatient(_patientDetailchanges);
+                var result = _patientdatabase.UpdatePatient(patientDetailchanges);
                 if (result != null)
                 {
                     return Ok(result);

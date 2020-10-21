@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Alert_To_Care.Repository;
 using Alert_To_Care.Models;
@@ -14,11 +11,11 @@ namespace Alert_To_Care.Controllers
     [ApiController]
     public class BedDataController : ControllerBase
     {
-        IBedDataRepository _bedDatabase;
+        private readonly IBedDataRepository _bedDatabase;
 
         public BedDataController(IBedDataRepository repo)
         {
-            this._bedDatabase = repo;
+            _bedDatabase = repo;
         }
        
 
@@ -38,10 +35,10 @@ namespace Alert_To_Care.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            var _details = _bedDatabase.GetBedDetailsById(id);
-            if (_details != null)
+            var details = _bedDatabase.GetBedDetailsById(id);
+            if (details != null)
             {
-                return Ok(_details);
+                return Ok(details);
             }
             return BadRequest();
         }
@@ -50,22 +47,22 @@ namespace Alert_To_Care.Controllers
         [Route("[action]/{id}")]
         public IActionResult GetBedStatus(string id)
         {
-            BedDataModel _bedDetails = _bedDatabase.GetBedDetailsById(id);
-            if(_bedDetails != null)
+            BedDataModel bedDetails = _bedDatabase.GetBedDetailsById(id);
+            if(bedDetails != null)
             {
-                bool _bedStatus = _bedDetails.BedStatus;
-                return Ok( _bedStatus);
+                bool bedStatus = bedDetails.BedStatus;
+                return Ok( bedStatus);
             }
             return BadRequest();
         }
 
         // POST api/<BedDataController>
         [HttpPost]
-        public IActionResult Post([FromBody] BedDataModel _bedDetails)
+        public IActionResult Post([FromBody] BedDataModel bedDetails)
         {
-            if(_bedDetails != null)
+            if(bedDetails != null)
             {
-                var result = _bedDatabase.AddBed(_bedDetails);
+                var result = _bedDatabase.AddBed(bedDetails);
                 return Ok(result);
             }
             return BadRequest();
@@ -73,11 +70,11 @@ namespace Alert_To_Care.Controllers
 
         // PUT api/<BedDataController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(string id, [FromBody] BedDataModel _bedDetails)
+        public IActionResult Put(string id, [FromBody] BedDataModel bedDetails)
         {
-            if (_bedDetails.BedId == id)
+            if (bedDetails.BedId == id)
             {
-                var result = _bedDatabase.UpdateBed(_bedDetails);
+                var result = _bedDatabase.UpdateBed(bedDetails);
                 if (result != null)
                 {
                     return Ok(result);

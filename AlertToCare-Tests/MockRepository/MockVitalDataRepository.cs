@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
 using System.Net.Mail;
@@ -10,13 +8,13 @@ namespace AlertToCare_Tests.MockRepository
 {
     class MockVitalDataRepository:IVitalDataRepository
     {
-        private List<VitalsDataModel> _VitalsList;
-        private List<BedDataModel> _BedsList;
+        private readonly List<VitalsDataModel> _vitalsList;
+        //private List<BedDataModel> _bedsList;
 
 
         public MockVitalDataRepository()
         {
-            _VitalsList = new List<VitalsDataModel>()
+            _vitalsList = new List<VitalsDataModel>()
             {
                 new VitalsDataModel() { PatientId = "1",
                     PatientBedId = "40",
@@ -29,7 +27,7 @@ namespace AlertToCare_Tests.MockRepository
                     Spo2 = 100f,
                     RespRate = 70f}
             };
-            _BedsList = new List<BedDataModel>()
+            /*_bedsList = new List<BedDataModel>()
             {
                 new BedDataModel() {
                     BedId = "40",
@@ -37,7 +35,7 @@ namespace AlertToCare_Tests.MockRepository
                     PatientId = "1",
                     IcuId = "2"
                 }
-            };
+            };*/
 
         }
         private bool CheckValidity(VitalsDataModel vital)
@@ -49,19 +47,19 @@ namespace AlertToCare_Tests.MockRepository
             return false;
         }
 
-        public string CheckVital(string _patientId)
+        public string CheckVital(string patientId)
         {
-            VitalsDataModel vital = _VitalsList.FirstOrDefault(e => string.Equals(e.PatientId, _patientId));
+            VitalsDataModel vital = _vitalsList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
             if (vital == null) { return null; }
             string email = "alertcasestudy@gmail.com";
 
             string spo2Result = CheckSpo2InRange(vital.Spo2);
             string bpmResult = CheckBpmInRange(vital.Bpm);
-            string RespRateResult = CheckRespRateInRange(vital.RespRate);
-            string alert = spo2Result + bpmResult + RespRateResult;
+            string respRateResult = CheckRespRateInRange(vital.RespRate);
+            string alert = spo2Result + bpmResult + respRateResult;
             if (alert.Length != 0)
             {
-                alert = "PatientId:" + _patientId + " --> " + alert;
+                alert = "PatientId:" + patientId + " --> " + alert;
                 SendAlert(email, alert);
             }
 
@@ -91,58 +89,54 @@ namespace AlertToCare_Tests.MockRepository
         }
         private string CheckRespRateInRange(float rr)
         {
-            string RespRatemsg = "";
+            string respRatemsg = "";
             if (rr < 30.0)
             {
-                RespRatemsg += " [ RespRate is low ] ";
+                respRatemsg += " [ RespRate is low ] ";
             }
             else if (rr > 95.0)
             {
-                RespRatemsg += " [ RespRate is high ] ";
+                respRatemsg += " [ RespRate is high ] ";
             }
-            return RespRatemsg;
+            return respRatemsg;
         }
 
         private void SendAlert(string email, string alertmsg)
         {
-            MailMessage mailMessage = new MailMessage(email, email);
-            mailMessage.Subject = "Alert";
-            mailMessage.Body = alertmsg;
-
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-            smtpClient.Credentials = new System.Net.NetworkCredential()
+            MailMessage mailMessage = new MailMessage(email, email)
             {
-                UserName = email,
-                Password = "#C@se2Study"
+                Subject = "Alert",
+                Body = alertmsg
             };
-            smtpClient.EnableSsl = true;
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
+            {
+                Credentials = new System.Net.NetworkCredential()
+                {
+                    UserName = email,
+                    Password = "#C@se2Study"
+                },
+                EnableSsl = true
+            };
             smtpClient.Send(mailMessage);
         }
 
         public IEnumerable<VitalsDataModel> GetAll()
         {
-            if (_VitalsList != null)
-            {
-                return _VitalsList;
-            }
-            return null;
+            return _vitalsList;
         }
 
-        public VitalsDataModel GetAllVital(string _patientId)
+        public VitalsDataModel GetAllVital(string patientId)
         {
-            VitalsDataModel _vital = _VitalsList.FirstOrDefault(e => string.Equals(e.PatientId, _patientId));
-            if (_vital != null)
-            {
-                return _vital;
-            }
-            return null;
+            VitalsDataModel vital = _vitalsList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
+            return vital;
         }
 
         public VitalsDataModel NewVitalAdd(VitalsDataModel vital)
         {
             if (vital != null && CheckValidity(vital))
             {
-                _VitalsList.Add(vital);
+                _vitalsList.Add(vital);
                 return vital;
 
             }
@@ -151,11 +145,11 @@ namespace AlertToCare_Tests.MockRepository
 
         public VitalsDataModel RemoveVital(string patientId)
         {
-            VitalsDataModel _vital = _VitalsList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
-            if (_vital != null)
+            VitalsDataModel vital = _vitalsList.FirstOrDefault(e => string.Equals(e.PatientId, patientId));
+            if (vital != null)
             {
-                _VitalsList.Remove(_vital);
-                return _vital;
+                _vitalsList.Remove(vital);
+                return vital;
             }
             return null;
         }
@@ -163,14 +157,14 @@ namespace AlertToCare_Tests.MockRepository
         public VitalsDataModel UpdatePatientVitals(VitalsDataModel patientvital)
         {
 
-            VitalsDataModel _vital = _VitalsList.FirstOrDefault(e => string.Equals(e.PatientId, patientvital.PatientId));
-            if (_vital != null)
+            VitalsDataModel vital = _vitalsList.FirstOrDefault(e => string.Equals(e.PatientId, patientvital.PatientId));
+            if (vital != null)
             {
-                _vital.PatientBedId = patientvital.PatientBedId;
-                _vital.Bpm = patientvital.Bpm;
-                _vital.Spo2 = patientvital.Spo2;
-                _vital.RespRate = patientvital.RespRate;
-                return _vital;
+                vital.PatientBedId = patientvital.PatientBedId;
+                vital.Bpm = patientvital.Bpm;
+                vital.Spo2 = patientvital.Spo2;
+                vital.RespRate = patientvital.RespRate;
+                return vital;
             }
             return null;
 

@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
 
 namespace AlertToCare_Tests.MockRepository
 {
-    class MockICUDataRepository : IIcuDataRepository
+    class MockIcuDataRepository : IIcuDataRepository
     {
-        private List<IcuDataModel> _ICUList;
+        private readonly List<IcuDataModel> _icuList;
 
-        public MockICUDataRepository()
+        public MockIcuDataRepository()
         {
-            _ICUList = new List<IcuDataModel>()
+            _icuList = new List<IcuDataModel>()
             {
                 new IcuDataModel() { IcuId = "1", Layout = "sq", TotalNoOfBeds = 12},
                 new IcuDataModel() { IcuId = "2", Layout = "L", TotalNoOfBeds = 6},
@@ -33,8 +31,8 @@ namespace AlertToCare_Tests.MockRepository
            // IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, icu.IcuId));
             if (icu != null && CheckValidity(icu))
             {
-                icu.IcuId = _ICUList.Max(e => e.IcuId + 1);
-                _ICUList.Add(icu);
+                icu.IcuId = _icuList.Max(e => e.IcuId + 1);
+                _icuList.Add(icu);
                 return icu;
                 
             }
@@ -43,52 +41,44 @@ namespace AlertToCare_Tests.MockRepository
 
         public IEnumerable<IcuDataModel> GetAllIcu()
         {
-             if(_ICUList != null)
-            {
-                return _ICUList;
-            }
-            return null;
+            return _icuList;
         }
 
-        public IcuDataModel GetIcuDetailsById(string _icuId)
+        public IcuDataModel GetIcuDetailsById(string icuId)
         {
-            IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, _icuId));
-            if (_icu != null)
-            {
-                return _icu;
-            }
-            return null;
+            IcuDataModel icu = _icuList.FirstOrDefault(e => string.Equals(e.IcuId, icuId));
+            return icu;
         }
 
         public IcuDataModel RemoveIcu(string icuId)
         {
-            IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, icuId));
-            if (_icu != null)
+            IcuDataModel icu = _icuList.FirstOrDefault(e => string.Equals(e.IcuId, icuId));
+            if (icu != null)
             {
-                _ICUList.Remove(_icu);
-                return _icu;
+                _icuList.Remove(icu);
+                return icu;
             }
             return null;
         }
 
-        public IcuDataModel UpdateIcu(IcuDataModel _icuDetailsChanges)
+        public IcuDataModel UpdateIcu(IcuDataModel icuDetailsChanges)
         {
-            IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, _icuDetailsChanges.IcuId));
-            if (_icu != null)
+            IcuDataModel icu = _icuList.FirstOrDefault(e => string.Equals(e.IcuId, icuDetailsChanges.IcuId));
+            if (icu != null)
             {
-                _icu.TotalNoOfBeds = _icuDetailsChanges.TotalNoOfBeds;
-                _icu.Layout = _icuDetailsChanges.Layout;
-                return _icu;
+                icu.TotalNoOfBeds = icuDetailsChanges.TotalNoOfBeds;
+                icu.Layout = icuDetailsChanges.Layout;
+                return icu;
             }
             return null;
         }
 
         public bool UpdateLayout(string icuId, string layout)
         {
-            IcuDataModel _icu = _ICUList.FirstOrDefault(e => string.Equals(e.IcuId, icuId));
-            if (_icu != null)
+            IcuDataModel icu = _icuList.FirstOrDefault(e => string.Equals(e.IcuId, icuId));
+            if (icu != null)
             {
-                _icu.Layout = layout;
+                icu.Layout = layout;
                 return true;
             }
 

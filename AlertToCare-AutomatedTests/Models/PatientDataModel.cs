@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 //using Microsoft.AspNetCore.SignalR;
 
-namespace Alert_To_Care.Models
+namespace AlertToCare_AutomatedTests.Models
 {
     public class PatientDataModel
     {

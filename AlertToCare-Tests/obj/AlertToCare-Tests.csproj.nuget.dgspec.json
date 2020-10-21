@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj": {}
+    "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj": {
+    "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj",
+        "projectUniqueName": "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj",
         "projectName": "Alert-To-Care",
-        "projectPath": "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj",
-        "packagesPath": "C:\\Users\\Ekta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\Alert-To-Care\\obj\\",
+        "projectPath": "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj",
+        "packagesPath": "C:\\Users\\Tripti Saini\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\Alert-To-Care\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ekta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tripti Saini\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,17 +96,20 @@
         }
       }
     },
-    "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj": {
+    "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj",
         "projectName": "AlertToCare-Tests",
-        "projectPath": "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj",
-        "packagesPath": "C:\\Users\\Ekta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\AlertToCare-Tests\\obj\\",
+        "projectPath": "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\AlertToCare-Tests\\AlertToCare-Tests.csproj",
+        "packagesPath": "C:\\Users\\Tripti Saini\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\AlertToCare-Tests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ekta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tripti Saini\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -116,8 +122,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj": {
-                "projectPath": "C:\\Users\\Ekta\\Desktop\\Ekta\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj"
+              "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj": {
+                "projectPath": "C:\\Users\\Tripti Saini\\philips\\bootcamp\\case-study-2\\alert-to-care-s21b3\\Alert-To-Care\\Alert-To-Care.csproj"
               }
             }
           }

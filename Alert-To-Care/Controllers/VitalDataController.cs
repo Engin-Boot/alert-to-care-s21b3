@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Alert_To_Care.Repository;
 using Alert_To_Care.Models;
 
@@ -12,11 +8,11 @@ namespace Alert_To_Care.Controllers
     [ApiController]
     public class VitalDataController : ControllerBase
     {
-        IVitalDataRepository _vitaldatabase;
+        private readonly IVitalDataRepository _vitaldatabase;
 
         public VitalDataController(IVitalDataRepository repo)
         {
-            this._vitaldatabase = repo;
+            _vitaldatabase = repo;
         }
 
         // GET: api/<VitalDataController>
@@ -37,10 +33,10 @@ namespace Alert_To_Care.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            VitalsDataModel _vital = _vitaldatabase.GetAllVital(id);
-            if (_vital != null)
+            VitalsDataModel vital = _vitaldatabase.GetAllVital(id);
+            if (vital != null)
             {
-                return Ok(_vital);
+                return Ok(vital);
             }
             return BadRequest();
         }
@@ -87,11 +83,11 @@ namespace Alert_To_Care.Controllers
 
         //PUT api/<VitalDataController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(string id, [FromBody] VitalsDataModel _vitalDetailchanges)
+        public IActionResult Put(string id, [FromBody] VitalsDataModel vitalDetailchanges)
         {
-            if (_vitalDetailchanges.PatientId == id)
+            if (vitalDetailchanges.PatientId == id)
             {
-                var result = _vitaldatabase.UpdatePatientVitals(_vitalDetailchanges);
+                var result = _vitaldatabase.UpdatePatientVitals(vitalDetailchanges);
                 if (result != null)
                 {
                     return Ok(result);

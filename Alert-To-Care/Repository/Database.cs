@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-//using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System.Data.Entity;
 using Alert_To_Care.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Alert_To_Care.Repository
 {
@@ -14,16 +8,14 @@ namespace Alert_To_Care.Repository
     {
         public Database(DbContextOptions<Database> options) : base(options)
         { }
-        public DbSet<PatientDataModel> Patients { get; set; }
-        public DbSet<BedDataModel> Beds { get; set; }
-        public DbSet<IcuDataModel> Icu { get; set; }
-        public DbSet<VitalsDataModel> Vitals { get; set; }
+        public DbSet<PatientDataModel> Patients { get; }
+        public DbSet<BedDataModel> Beds { get; }
+        public DbSet<IcuDataModel> Icu { get; }
+        public DbSet<VitalsDataModel> Vitals { get; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            
-            
+        {     
              modelBuilder.Entity<PatientDataModel>(b =>
              { b.HasData(new
                  {
@@ -72,9 +64,8 @@ namespace Alert_To_Care.Repository
                     Spo2 = 55f,
                     RespRate = 70f
                 }
-                );
+            );
 
-            ;
         }
 
     }

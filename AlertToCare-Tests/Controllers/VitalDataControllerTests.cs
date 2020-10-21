@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Alert_To_Care.Models;
-using Alert_To_Care.Repository;
+﻿using Alert_To_Care.Models;
 using Alert_To_Care.Controllers;
 using AlertToCare_Tests.MockRepository;
 using Xunit;
@@ -12,15 +8,15 @@ namespace AlertToCare_Tests.Controllers
 {
     public class VitalDataControllerTests
     {
-        readonly MockVitalDataRepository _VitalOperations = new MockVitalDataRepository();
+        private readonly MockVitalDataRepository _vitalOperations = new MockVitalDataRepository();
 
         // ---------------------POST--------------------------
 
         [Fact]
         public void WhenGiven_ValidData_PostVitalExecutes()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            VitalsDataModel _vital = new VitalsDataModel()
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            VitalsDataModel vital = new VitalsDataModel()
             {
                 PatientId = "3",
                 PatientBedId = "43",
@@ -28,56 +24,60 @@ namespace AlertToCare_Tests.Controllers
                 Spo2 = 55f,
                 RespRate = 70f
             };
-            var _response = _controller.Post(_vital);
-            var _responseObject = _response as OkObjectResult;
-            Assert.NotNull(_response);
-            Assert.Equal(200, _responseObject.StatusCode);
+            var response = controller.Post(vital);
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(response);
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
 
         [Fact]
         public void WhenGiven_NullData_PostVitalFails()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            VitalsDataModel _vital = null;
-            var _response = _controller.Post(_vital);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var response = controller.Post(null);
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
         [Fact]
         public void WhenGiven_InvalidDataTypeOfBpm_PostVitalFails()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            VitalsDataModel _vital = new VitalsDataModel()
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            VitalsDataModel vital = new VitalsDataModel()
             {
                 Bpm = 60,
             };
-            var _response = _controller.Post(_vital);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            var response = controller.Post(vital);
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
         [Fact]
         public void WhenGiven_InvalidDataTypeOfSpo2_PostVitalFails()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            VitalsDataModel _vital = new VitalsDataModel()
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            VitalsDataModel vital = new VitalsDataModel()
             {
                 Spo2 = 55,
             };
-            var _response = _controller.Post(_vital);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            var response = controller.Post(vital);
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
         [Fact]
         public void WhenGiven_InvalidDataTypeOfRespRate_PostVitalFails()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            VitalsDataModel _vital = new VitalsDataModel()
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            VitalsDataModel vital = new VitalsDataModel()
             {
                 RespRate = 70,
             };
-            var _response = _controller.Post(_vital);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            var response = controller.Post(vital);
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
 
 
@@ -86,29 +86,32 @@ namespace AlertToCare_Tests.Controllers
         [Fact]
         public void When_FetchingAllVitalData_GetExecutes()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _response = _controller.Get();
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var response = controller.Get();
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
 
         //------------------------GET {id} -------------------------------
 
         [Fact]
-        public void WhenGiven_ValidID_GetByID_Executes()
+        public void WhenGiven_ValidId_GetById_Executes()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _response = _controller.Get("1");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var response = controller.Get("1");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGiven_InValidID_GetByID_FailsToExecute()
+        public void WhenGiven_InValidId_GetById_FailsToExecute()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _response = _controller.Get("99");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var response = controller.Get("99");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
 
 
@@ -118,47 +121,51 @@ namespace AlertToCare_Tests.Controllers
         [Fact]
         public void WhenGiven_ValidId_CheckVitalAndAlertFails()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _response = _controller.CheckVitalAndAlert("1");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var response = controller.CheckVitalAndAlert("1");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
 
         [Fact]
         public void WhenGiven_InValidId_CheckVitalAndAlertFails()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _response = _controller.CheckVitalAndAlert("100");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var response = controller.CheckVitalAndAlert("100");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
 
         //---------------------------- DELETE {id} ----------------------------------
 
         [Fact]
-        public void WhenGiven_ValidID_DeleteExecutes()
+        public void WhenGiven_ValidId_DeleteExecutes()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _response = _controller.Delete("2");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var response = controller.Delete("2");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
 
         [Fact]
-        public void WhenGiven_InValidID_DeleteFails()
+        public void WhenGiven_InValidId_DeleteFails()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _response = _controller.Delete("88");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var response = controller.Delete("88");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
 
         //---------------------------- PUT {id} ----------------------------------
         [Fact]
-        public void WhenGiven_ValidID_PutExecutes()
+        public void WhenGiven_ValidId_PutExecutes()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _changes = new VitalsDataModel()
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var changes = new VitalsDataModel()
             {
                 PatientId = "2",
                 PatientBedId = "41",
@@ -166,16 +173,17 @@ namespace AlertToCare_Tests.Controllers
                 Spo2 = 10f,
                 RespRate = 70f
             };
-            var _response = _controller.Put("2", _changes);
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            var response = controller.Put("2", changes);
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
 
         [Fact]
-        public void WhenGiven_InValidID_PutExecutes()
+        public void WhenGiven_InValidId_PutExecutes()
         {
-            VitalDataController _controller = new VitalDataController(_VitalOperations);
-            var _changes = new VitalsDataModel()
+            VitalDataController controller = new VitalDataController(_vitalOperations);
+            var changes = new VitalsDataModel()
             {
                 PatientId = "1000",
                 PatientBedId = "41",
@@ -183,9 +191,10 @@ namespace AlertToCare_Tests.Controllers
                 Spo2 = 10f,
                 RespRate = 70f
             };
-            var _response = _controller.Put("1000", _changes);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            var response = controller.Put("1000", changes);
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
     }
 }

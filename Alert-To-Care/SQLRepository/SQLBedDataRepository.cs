@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
-using Microsoft.EntityFrameworkCore;
 
 namespace Alert_To_Care.SQLRepository
 {
-    public class SQLBedDataRepository : IBedDataRepository
+    public class SqlBedDataRepository : IBedDataRepository
     {
         private readonly Database _context;
 
-        public SQLBedDataRepository(Database context)
+        public SqlBedDataRepository(Database context)
         {
             _context = context;
         }
-        public BedDataModel AddBed(BedDataModel _bed)
+        public BedDataModel AddBed(BedDataModel bed)
         {
-            if(_bed != null)
+            if(bed != null)
             {
-                _context.Beds.Add(_bed);
+                _context.Beds.Add(bed);
                 _context.SaveChanges();
-                return _bed;
+                return bed;
             }
             return null;
         }
@@ -32,43 +28,38 @@ namespace Alert_To_Care.SQLRepository
             return _context.Beds;
         }
 
-        public BedDataModel GetBedDetailsById(string _bedId)
+        public BedDataModel GetBedDetailsById(string bedId)
         {
-            BedDataModel _bedDetails = _context.Beds.Find(_bedId);
-            if(_bedDetails!= null)
-            {
-                return _bedDetails;
-            }
-            return null;
+            BedDataModel bedDetails = _context.Beds.Find(bedId);
+            
+            return bedDetails;
         }
 
-        public BedDataModel RemoveBed(string _bedId)
+        public BedDataModel RemoveBed(string bedId)
         {
-            BedDataModel _bed = _context.Beds.Find(_bedId);
-            if(_bed != null)
+            BedDataModel bed = _context.Beds.Find(bedId);
+            if(bed != null)
             {
-                _context.Beds.Remove(_bed);
+                _context.Beds.Remove(bed);
                 _context.SaveChanges();
-                return _bed;
             }
-            return null;
+            return bed;
         }
 
-        public BedDataModel UpdateBed(BedDataModel _bedDetailsChanges)
+        public BedDataModel UpdateBed(BedDataModel bedDetailsChanges)
         {
-            string _id = _bedDetailsChanges.BedId;
-            if (_context.Beds.Find(_id) != null)
+            string id = bedDetailsChanges.BedId;
+            if (_context.Beds.Find(id) != null)
             {
-                BedDataModel bed = _context.Beds.Find(_id);
+                BedDataModel bed = _context.Beds.Find(id);
                 if (bed != null)
                 {
-                    bed.BedStatus = _bedDetailsChanges.BedStatus;
-                    bed.PatientId = _bedDetailsChanges.PatientId;
-                    bed.IcuId = _bedDetailsChanges.IcuId;
+                    bed.BedStatus = bedDetailsChanges.BedStatus;
+                    bed.PatientId = bedDetailsChanges.PatientId;
+                    bed.IcuId = bedDetailsChanges.IcuId;
                     _context.SaveChanges();
-                    return bed;
                 }
-                return null;
+                return bed;
             }
             return null;
         }

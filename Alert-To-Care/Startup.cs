@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Alert_To_Care.Repository;
 using Alert_To_Care.SQLRepository;
-using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 
 namespace Alert_To_Care
 {
@@ -23,19 +15,19 @@ namespace Alert_To_Care
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddMvc();
-            services.AddDbContextPool<Alert_To_Care.Repository.Database>(
+            services.AddDbContextPool<Database>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("PatientDBConnection")));
             services.AddControllers();
-            services.AddTransient<IPatientDataRepository, SQLPatientDataRepository>();
-            services.AddTransient<IIcuDataRepository, SQLIcuDataRepository>();
-            services.AddTransient<IBedDataRepository, SQLBedDataRepository>();
-            services.AddTransient<IVitalDataRepository, SQLVitalDataRepository>();
+            services.AddTransient<IPatientDataRepository, SqlPatientDataRepository>();
+            services.AddTransient<IIcuDataRepository, SqlIcuDataRepository>();
+            services.AddTransient<IBedDataRepository, SqlBedDataRepository>();
+            services.AddTransient<IVitalDataRepository, SqlVitalDataRepository>();
 
         }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Alert_To_Care.Models;
-using Alert_To_Care.Repository;
+﻿using Alert_To_Care.Models;
 using Alert_To_Care.Controllers;
 using AlertToCare_Tests.MockRepository;
 using Xunit;
@@ -12,129 +8,142 @@ namespace AlertToCare_Tests.Controllers
 {
     public class IcuDataControllerTests
     {
-        readonly MockICUDataRepository _IcuOperations = new MockICUDataRepository();
+        private readonly MockIcuDataRepository _icuOperations = new MockIcuDataRepository();
         
         [Fact]
-        public void WhenGivenValidDataPostICUExecutes()
+        public void WhenGivenValidDataPostIcuExecutes()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            IcuDataModel _icu = new IcuDataModel()
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            IcuDataModel icu = new IcuDataModel()
             {
                 IcuId = "3",
                 Layout = "sq",
                 TotalNoOfBeds = 20
             };
-            var _response = _controller.Post(_icu);
-            var _responseObject =  _response as OkObjectResult;
-            Assert.NotNull(_response);
-            Assert.Equal(200, _responseObject.StatusCode);
+            var response = controller.Post(icu);
+            var responseObject =  response as OkObjectResult;
+            Assert.NotNull(response);
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
     
         [Fact]
-        public void WhenGivenNullDataPostICUFails()
+        public void WhenGivenNullDataPostIcuFails()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            IcuDataModel _icu = new IcuDataModel();
-            var _response = _controller.Post(_icu);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            IcuDataModel icu = new IcuDataModel();
+            var response = controller.Post(icu);
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenInvalidDataPostICUFails()
+        public void WhenGivenInvalidDataPostIcuFails()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            IcuDataModel _icu = new IcuDataModel()
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            IcuDataModel icu = new IcuDataModel()
             {
                 TotalNoOfBeds = 20
             };
-            var _response = _controller.Post(_icu);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            var response = controller.Post(icu);
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
 
         [Fact]
-        public void WhenFetchingICUDataGetExecutes()
+        public void WhenFetchingIcuDataGetExecutes()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.Get();
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.Get();
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenValidIDGetByIDExecutes()
+        public void WhenGivenValidIdGetByIdExecutes()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.Get("1");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.Get("1");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenInValidIDGetByIDFails()
+        public void WhenGivenInValidIdGetByIdFails()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.Get("99");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.Get("99");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenValidIDDeleteExecutes()
+        public void WhenGivenValidIdDeleteExecutes()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.Delete("2");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
-        }
-
-        [Fact]
-        public void WhenGivenInValidIDDeleteFails()
-        {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.Delete("88");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.Delete("2");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
 
         [Fact]
-        public void WhenGivenValidIDPutExecutes()
+        public void WhenGivenInValidIdDeleteFails()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _changes = new IcuDataModel() { IcuId = "1", TotalNoOfBeds = 20, Layout = "L" };
-            var _response = _controller.Put("1",_changes);
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.Delete("88");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
+        }
+
+        [Fact]
+        public void WhenGivenValidIdPutExecutes()
+        {
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var changes = new IcuDataModel() { IcuId = "1", TotalNoOfBeds = 20, Layout = "L" };
+            var response = controller.Put("1",changes);
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         
         [Fact]
-        public void WhenGivenValidIDGetLayoutExecutes()
+        public void WhenGivenValidIdGetLayoutExecutes()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.GetLayout("1");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.GetLayout("1");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenInValidIDGetLayoutFails()
+        public void WhenGivenInValidIdGetLayoutFails()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.GetLayout("11");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.GetLayout("11");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenValidIDGetBedsExecutes()
+        public void WhenGivenValidIdGetBedsExecutes()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.GetBeds("2");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.GetBeds("2");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenInValidIDGetBedsFails()
+        public void WhenGivenInValidIdGetBedsFails()
         {
-            IcuDataController _controller = new IcuDataController(_IcuOperations);
-            var _response = _controller.GetBeds("55");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var response = controller.GetBeds("55");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
     }
 }

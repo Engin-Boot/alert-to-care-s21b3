@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Alert_To_Care.Models;
-using Alert_To_Care.Repository;
+﻿using Alert_To_Care.Models;
 using Alert_To_Care.Controllers;
 using AlertToCare_Tests.MockRepository;
 using Xunit;
@@ -16,95 +12,104 @@ namespace AlertToCare_Tests.Controllers
         [Fact]
         public void WhenGivenValidDataPostBedExecutes()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            BedDataModel _bed = new BedDataModel()
+            BedDataController controller = new BedDataController(_bedOperations);
+            BedDataModel bed = new BedDataModel()
             {
                 IcuId = "3",
                 BedId = "34",
                 BedStatus = true,
                 PatientId = "30"
             };
-            var _response = _controller.Post(_bed);
-            var _responseObject = _response as OkObjectResult;
-            Assert.NotNull(_response);
-            Assert.Equal(200, _responseObject.StatusCode);
+            var response = controller.Post(bed);
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(response);
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
 
         }
         [Fact]
         public void WhenGivenNullDataPostBedFails()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            BedDataModel _bed = null;
-            var _response = _controller.Post(_bed);
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var response = controller.Post(null);
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
 
         }
         [Fact]
         public void WhenFetchingBedDataGetExecutes()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            var _response = _controller.Get();
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var response = controller.Get();
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenValidIDGetByIDExecutes()
+        public void WhenGivenValidIdGetByIdExecutes()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            var _response = _controller.Get("8");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var response = controller.Get("8");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenInValidIDGetByIDFails()
+        public void WhenGivenInValidIdGetByIdFails()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            var _response = _controller.Get("30");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var response = controller.Get("30");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
 
         }
         [Fact]
-        public void WhenGivenValidIDDeleteExecutes()
+        public void WhenGivenValidIdDeleteExecutes()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            var _response = _controller.Delete("12");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var response = controller.Delete("12");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenInValidIDDeleteFails()
+        public void WhenGivenInValidIdDeleteFails()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            var _response = _controller.Delete("20");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var response = controller.Delete("20");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenValidIDPutExecutes()
+        public void WhenGivenValidIdPutExecutes()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            var _changes = new BedDataModel() { BedId="12", BedStatus = true, PatientId="4" };
-            var _response = _controller.Put("12", _changes);
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var changes = new BedDataModel() { BedId="12", BedStatus = true, PatientId="4" };
+            var response = controller.Put("12", changes);
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenValidIDGetBedStatusExecutes()
+        public void WhenGivenValidIdGetBedStatusExecutes()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            var _response = _controller.GetBedStatus("8");
-            var _responseObject = _response as OkObjectResult;
-            Assert.Equal(200, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var response = controller.GetBedStatus("8");
+            var responseObject = response as OkObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(200, responseObject.StatusCode);
         }
         [Fact]
-        public void WhenGivenInValidIDGetBedStatusFails()
+        public void WhenGivenInValidIdGetBedStatusFails()
         {
-            BedDataController _controller = new BedDataController(_bedOperations);
-            var _response = _controller.GetBedStatus("40");
-            var _responseObject = _response as BadRequestResult;
-            Assert.Equal(400, _responseObject.StatusCode);
+            BedDataController controller = new BedDataController(_bedOperations);
+            var response = controller.GetBedStatus("40");
+            var responseObject = response as BadRequestResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
         }
     }
 }

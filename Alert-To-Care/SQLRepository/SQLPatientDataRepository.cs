@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Alert_To_Care.SQLRepository
 {
-    public class SQLPatientDataRepository : IPatientDataRepository
+    public class SqlPatientDataRepository : IPatientDataRepository
     {
         private readonly Database _context;
 
-        public SQLPatientDataRepository(Database context)
+        public SqlPatientDataRepository(Database context)
         {
             _context = context;
         }
@@ -25,9 +20,9 @@ namespace Alert_To_Care.SQLRepository
             return patient;
         }
 
-        public PatientDataModel DischargePatient(string _patientId)
+        public PatientDataModel DischargePatient(string patientId)
         {
-            PatientDataModel patient = _context.Patients.Find(_patientId);
+            PatientDataModel patient = _context.Patients.Find(patientId);
             if (patient != null)
             {
                 _context.Patients.Remove(patient);
@@ -39,8 +34,8 @@ namespace Alert_To_Care.SQLRepository
 
         public PatientDataModel GetPatientInfoFromId(string patientId)
         {
-            PatientDataModel _details = _context.Patients.Find(patientId);
-            return _details;
+            PatientDataModel details = _context.Patients.Find(patientId);
+            return details;
         }
 
         public IEnumerable<PatientDataModel> GetAllPatients()
@@ -49,12 +44,12 @@ namespace Alert_To_Care.SQLRepository
         }
 
 
-        public BedDataModel BedInfoFromPatientId(string _patientId)
+        public BedDataModel BedInfoFromPatientId(string patientId)
         {
-            PatientDataModel _details = _context.Patients.Find(_patientId);
-            if (_details != null)
+            PatientDataModel details = _context.Patients.Find(patientId);
+            if (details != null)
             {
-                BedDataModel bed = _context.Beds.Find(_details.BedId);
+                BedDataModel bed = _context.Beds.Find(details.BedId);
                 return bed;
             }
             return null;
@@ -63,10 +58,10 @@ namespace Alert_To_Care.SQLRepository
         public PatientDataModel UpdatePatient(PatientDataModel patientDetailChanges)
         {
 
-            string _id = patientDetailChanges.PatientId;
-            if (_context.Patients.Find(_id) != null)
+            string id = patientDetailChanges.PatientId;
+            if (_context.Patients.Find(id) != null)
             {
-                PatientDataModel patient = _context.Patients.Find(_id);
+                PatientDataModel patient = _context.Patients.Find(id);
                 if (patient != null)
                 {
                     patient.PatientName = patientDetailChanges.PatientName;

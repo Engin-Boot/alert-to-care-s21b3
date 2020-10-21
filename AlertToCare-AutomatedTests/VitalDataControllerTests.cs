@@ -1,9 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using System.Net;
-using Gherkin;
-using Newtonsoft.Json;
 using Alert_To_Care.Models;
 namespace AlertToCare_AutomatedTests
 {
@@ -23,7 +20,7 @@ namespace AlertToCare_AutomatedTests
         }
 
         [TestMethod]
-        public void TestGetVitalDataByValidID()
+        public void TestGetVitalDataByValidId()
         {
             var client = new RestClient(url2);
             var request = new RestRequest("{postid}", Method.GET);
@@ -33,7 +30,7 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestGetVitalDataByInValidID()
+        public void TestGetVitalDataByInValidId()
         {
             var client = new RestClient(url2);
             var request = new RestRequest("{postid}", Method.GET);
@@ -45,11 +42,11 @@ namespace AlertToCare_AutomatedTests
 
 
         [TestMethod]
-        public void TestPostVitalDataByValidID()
+        public void TestPostVitalDataByValidId()
         {
             var client = new RestClient(url2);
             var request = new RestRequest(Method.POST);
-            var _vitalData = new VitalsDataModel()
+            var vitalData = new VitalsDataModel()
             {
                 PatientId = "2",
                 PatientBedId = "41",
@@ -58,19 +55,19 @@ namespace AlertToCare_AutomatedTests
                 RespRate = 170f
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_vitalData);
+            request.AddJsonBody(vitalData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPostVitalDataByInValidID()
+        public void TestPostVitalDataByInValidId()
         {
             var client = new RestClient(url2);
             var request = new RestRequest(Method.POST);
-            var _vitalData = new VitalsDataModel();
+            var vitalData = new VitalsDataModel();
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_vitalData);
+            request.AddJsonBody(vitalData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
@@ -79,12 +76,12 @@ namespace AlertToCare_AutomatedTests
 
 
         [TestMethod]
-        public void TestPutVitalDataByValidID()
+        public void TestPutVitalDataByValidId()
         {
             var client = new RestClient(url2);
             var request = new RestRequest("{postid}", Method.PUT);
             request.AddUrlSegment("postid", "3");
-            var _vitalData = new VitalsDataModel()
+            var vitalData = new VitalsDataModel()
             {
                 PatientId = "3",
                 PatientBedId = "42",
@@ -93,18 +90,18 @@ namespace AlertToCare_AutomatedTests
                 RespRate = 17f
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_vitalData);
+            request.AddJsonBody(vitalData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPutVitalDataByInValidID()
+        public void TestPutVitalDataByInValidId()
         {
             var client = new RestClient(url2);
             var request = new RestRequest("{postid}", Method.PUT);
             request.AddUrlSegment("postid", "99");
-            var _vitalData = new VitalsDataModel()
+            var vitalData = new VitalsDataModel()
             {
                 PatientId = "99",
                 PatientBedId = "40",
@@ -113,13 +110,13 @@ namespace AlertToCare_AutomatedTests
                 RespRate = 70f
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_vitalData);
+            request.AddJsonBody(vitalData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestDeleteVitalDataByValidID()
+        public void TestDeleteVitalDataByValidId()
         {
             var client = new RestClient(url2);
             var request = new RestRequest("{postid}", Method.DELETE);
@@ -129,7 +126,7 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestDeleteVitalDataByInValidID()
+        public void TestDeleteVitalDataByInValidId()
         {
             var client = new RestClient(url2);
             var request = new RestRequest("{postid}", Method.DELETE);

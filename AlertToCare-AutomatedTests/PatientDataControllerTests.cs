@@ -1,9 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 using System.Net;
-using Gherkin;
-using Newtonsoft.Json;
 using Alert_To_Care.Models;
 
 namespace AlertToCare_AutomatedTests
@@ -24,7 +21,7 @@ namespace AlertToCare_AutomatedTests
         }
 
         [TestMethod]
-        public void TestGetPatientDataByValidID()
+        public void TestGetPatientDataByValidId()
         {
             var client = new RestClient(url3);
             var request = new RestRequest("{postid}", Method.GET);
@@ -49,11 +46,11 @@ namespace AlertToCare_AutomatedTests
 
 
         [TestMethod]
-        public void TestPostPatientDataByValidID()
+        public void TestPostPatientDataByValidId()
         {
             var client = new RestClient(url3);
             var request = new RestRequest(Method.POST);
-            var _patientData = new PatientDataModel()
+            var patientData = new PatientDataModel()
             {
                 PatientId = "8",
                 PatientAge = 49,
@@ -64,19 +61,19 @@ namespace AlertToCare_AutomatedTests
                 Email = "fdw@adf.com"
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_patientData);
+            request.AddJsonBody(patientData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPostPatientDataByInValidID()
+        public void TestPostPatientDataByInValidId()
         {
             var client = new RestClient(url3);
             var request = new RestRequest(Method.POST);
-            PatientDataModel _patientData = null;
+            PatientDataModel patientData = null;
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_patientData);
+            request.AddJsonBody(patientData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
@@ -85,12 +82,12 @@ namespace AlertToCare_AutomatedTests
 
 
         [TestMethod]
-        public void TestPutPatientDataByValidID()
+        public void TestPutPatientDataByValidId()
         {
             var client = new RestClient(url3);
             var request = new RestRequest("{postid}", Method.PUT);
             request.AddUrlSegment("postid", "9");
-            var _patientData = new PatientDataModel()
+            var patientData = new PatientDataModel()
             {
                 PatientId = "9",
                 PatientAge = 40,
@@ -101,18 +98,18 @@ namespace AlertToCare_AutomatedTests
                 Email = "fdw@adf.com"
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_patientData);
+            request.AddJsonBody(patientData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
         }
         [TestMethod]
-        public void TestPutPatientDataByInValidID()
+        public void TestPutPatientDataByInValidId()
         {
             var client = new RestClient(url3);
             var request = new RestRequest("{postid}", Method.PUT);
             request.AddUrlSegment("postid", "99");
-            var _patientData = new PatientDataModel()
+            var patientData = new PatientDataModel()
             {
                 PatientId = "99",
                 PatientAge = 40,
@@ -123,14 +120,14 @@ namespace AlertToCare_AutomatedTests
                 Email = "fdw@adf.com"
             };
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(_patientData);
+            request.AddJsonBody(patientData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
         }
 
         [TestMethod]
-        public void TestDeletePatientDataByValidID()
+        public void TestDeletePatientDataByValidId()
         {
             var client = new RestClient(url3);
             var request = new RestRequest("{postid}", Method.DELETE);
@@ -140,7 +137,7 @@ namespace AlertToCare_AutomatedTests
 
         }
         [TestMethod]
-        public void TestDeletePatientDataByInValidID()
+        public void TestDeletePatientDataByInValidId()
         {
             var client = new RestClient(url3);
             var request = new RestRequest("{postid}", Method.DELETE);
