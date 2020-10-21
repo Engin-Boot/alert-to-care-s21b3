@@ -10,7 +10,7 @@ namespace Alert_To_Care.Migrations
 {
     [DbContext(typeof(Database))]
     [Migration("20201018212037_initialMigration")]
-    partial class initialMigration
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

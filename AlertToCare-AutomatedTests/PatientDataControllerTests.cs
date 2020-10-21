@@ -71,9 +71,9 @@ namespace AlertToCare_AutomatedTests
         {
             var client = new RestClient(url3);
             var request = new RestRequest(Method.POST);
-            PatientDataModel patientData = null;
+            //PatientDataModel patientData = null;
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(patientData);
+            //request.AddJsonBody(patientData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 

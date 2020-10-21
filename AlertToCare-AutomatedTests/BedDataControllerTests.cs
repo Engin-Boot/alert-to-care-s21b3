@@ -8,7 +8,7 @@ namespace AlertToCare_AutomatedTests
     [TestClass]
     public class BedDataControllerTests
     {
-        private static string url = "http://localhost:5000/api/beddata";
+        private static string url = "http://localhost:5695/api/beddata";
         [TestMethod]
         public void TestGetAllBedData()
         {
@@ -62,9 +62,9 @@ namespace AlertToCare_AutomatedTests
         {
             var client = new RestClient(url);
             var request = new RestRequest(Method.POST);
-            BedDataModel bedData = null;
+            //BedDataModel bedData = null;
             request.AddHeader("Content-Type", "application/json");
-            request.AddJsonBody(bedData);
+            //request.AddJsonBody(bedData);
             var response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
 
