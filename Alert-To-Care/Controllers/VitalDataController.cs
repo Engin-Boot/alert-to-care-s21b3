@@ -20,12 +20,7 @@ namespace Alert_To_Care.Controllers
         public IActionResult Get()
         {
             var result = _vitaldatabase.GetAll();
-            if (result != null)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-
+            return Ok(result);
         }
 
 
@@ -38,7 +33,7 @@ namespace Alert_To_Care.Controllers
             {
                 return Ok(vital);
             }
-            return BadRequest();
+            return BadRequest("Vitals for patient not found.");
         }
 
         // GET api/<VitalDataController>/5
@@ -49,7 +44,7 @@ namespace Alert_To_Care.Controllers
             string alert = _vitaldatabase.CheckVital(id);
             if (alert == null)
             {
-                return BadRequest();
+                return BadRequest("Vitals for patient not found.");
             }
             return Ok(alert);
         }
@@ -65,7 +60,7 @@ namespace Alert_To_Care.Controllers
                 return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest("Patient not found OR Vitals for patient already exist.");
         }
 
         // DELETE api/<VitalDataController>/5
@@ -78,7 +73,7 @@ namespace Alert_To_Care.Controllers
                 return Ok(vital);
             }
 
-            return BadRequest();
+            return BadRequest("Vitals for patient does not exist.");
         }
 
         //PUT api/<VitalDataController>/5
@@ -93,7 +88,7 @@ namespace Alert_To_Care.Controllers
                     return Ok(result);
                 }
             }
-            return BadRequest();
+            return BadRequest("Vitals for patient does not exist.");
         }
     }
 }

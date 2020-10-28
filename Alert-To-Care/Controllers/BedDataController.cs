@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Alert_To_Care.Repository;
 using Alert_To_Care.Models;
+using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,11 +25,7 @@ namespace Alert_To_Care.Controllers
         public IActionResult Get()
         {
             IEnumerable<BedDataModel> result = _bedDatabase.GetAllBedInfo();
-            if (result != null)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
+            return Ok(result);
         }
 
         // GET api/<BedDataController>/5
@@ -40,7 +37,7 @@ namespace Alert_To_Care.Controllers
             {
                 return Ok(details);
             }
-            return BadRequest();
+            return BadRequest("Bed not found!");
         }
 
         [HttpGet]
@@ -53,7 +50,18 @@ namespace Alert_To_Care.Controllers
                 bool bedStatus = bedDetails.BedStatus;
                 return Ok( bedStatus);
             }
-            return BadRequest();
+            return BadRequest("Bed not found!");
+        }
+
+        [HttpGet]
+        [Route("[action]/{icuId}")]
+        public IActionResult GetBedsByIcuId(string icuId)
+        {
+            IEnumerable<BedDataModel> bedDetails = _bedDatabase.GetAllBedInfo();
+
+            IEnumerable<BedDataModel> bedsByIcuId = bedDetails.Where(bed => bed.IcuId.Equals(icuId));
+
+            return Ok(bedsByIcuId);
         }
 
         // POST api/<BedDataController>
@@ -65,7 +73,7 @@ namespace Alert_To_Care.Controllers
                 var result = _bedDatabase.AddBed(bedDetails);
                 return Ok(result);
             }
-            return BadRequest();
+            return BadRequest("Provide all details to add bed!");
         }
 
         // PUT api/<BedDataController>/5
@@ -80,7 +88,7 @@ namespace Alert_To_Care.Controllers
                     return Ok(result);
                 }
             }
-            return BadRequest();
+            return BadRequest("Update operation failed. Bed does not exist!");
         }
 
         // DELETE api/<BedDataController>/5
@@ -92,7 +100,7 @@ namespace Alert_To_Care.Controllers
             {
                 return Ok(result);
             }   
-            return BadRequest();
+            return BadRequest("Delete operation failed. Bed does not exist!");
         }
     }
 }

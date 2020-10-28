@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
 
 namespace Alert_To_Care.SQLRepository
 {
+    [ExcludeFromCodeCoverage]
     public class SqlBedDataRepository : IBedDataRepository
     {
         private readonly Database _context;

@@ -33,7 +33,7 @@ namespace AlertToCare_Tests.Controllers
             IcuDataController controller = new IcuDataController(_icuOperations);
             IcuDataModel icu = new IcuDataModel();
             var response = controller.Post(icu);
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -46,7 +46,7 @@ namespace AlertToCare_Tests.Controllers
                 TotalNoOfBeds = 20
             };
             var response = controller.Post(icu);
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -74,7 +74,7 @@ namespace AlertToCare_Tests.Controllers
         {
             IcuDataController controller = new IcuDataController(_icuOperations);
             var response = controller.Get("99");
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -93,7 +93,7 @@ namespace AlertToCare_Tests.Controllers
         {
             IcuDataController controller = new IcuDataController(_icuOperations);
             var response = controller.Delete("88");
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -108,7 +108,29 @@ namespace AlertToCare_Tests.Controllers
             Assert.NotNull(responseObject);
             Assert.Equal(200, responseObject.StatusCode);
         }
-        
+
+        [Fact]
+        public void WhenGivenInvalidIcuIdPutFails()
+        {
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var changes = new IcuDataModel() { IcuId = "42", TotalNoOfBeds = 20, Layout = "L" };
+            var response = controller.Put("42", changes);
+            var responseObject = response as BadRequestObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
+        }
+
+        [Fact]
+        public void WhenGivenUnmatchedIcuIdPutFails()
+        {
+            IcuDataController controller = new IcuDataController(_icuOperations);
+            var changes = new IcuDataModel() { IcuId = "1", TotalNoOfBeds = 20, Layout = "L" };
+            var response = controller.Put("8", changes);
+            var responseObject = response as BadRequestObjectResult;
+            Assert.NotNull(responseObject);
+            Assert.Equal(400, responseObject.StatusCode);
+        }
+
         [Fact]
         public void WhenGivenValidIdGetLayoutExecutes()
         {
@@ -123,7 +145,7 @@ namespace AlertToCare_Tests.Controllers
         {
             IcuDataController controller = new IcuDataController(_icuOperations);
             var response = controller.GetLayout("11");
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -141,7 +163,7 @@ namespace AlertToCare_Tests.Controllers
         {
             IcuDataController controller = new IcuDataController(_icuOperations);
             var response = controller.GetBeds("55");
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }

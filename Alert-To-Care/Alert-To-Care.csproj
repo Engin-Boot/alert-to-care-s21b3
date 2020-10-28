@@ -14,6 +14,16 @@
     <Compile Remove="Migrations\20201017111729_SeedIcuTable.Designer.cs" />
     <Compile Remove="Migrations\20201017113731_SeedBedsTable.cs" />
     <Compile Remove="Migrations\20201017113731_SeedBedsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201018212037_InitialMigration.cs" />
+    <Compile Remove="Migrations\20201018212037_initialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20201018212106_SeedPatientsTable.cs" />
+    <Compile Remove="Migrations\20201018212106_SeedPatientsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201018212122_SeedBedsTable.cs" />
+    <Compile Remove="Migrations\20201018212122_SeedBedsTable.Designer.cs" />
+    <Compile Remove="Migrations\20201018212136_SeedIcuTable.cs" />
+    <Compile Remove="Migrations\20201018212136_SeedIcuTable.Designer.cs" />
+    <Compile Remove="Migrations\20201018212151_SeedVitalsTable.cs" />
+    <Compile Remove="Migrations\20201018212151_SeedVitalsTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

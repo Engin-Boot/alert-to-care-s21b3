@@ -23,11 +23,7 @@ namespace Alert_To_Care.Controllers
         public IActionResult Get()
         {
             var allPatients = _patientdatabase.GetAllPatients();
-            if(allPatients != null)
-            {
-                return Ok(allPatients);
-            }
-            return BadRequest();
+            return Ok(allPatients);
         }
 
         // GET api/<PatientDataController>/5
@@ -39,7 +35,7 @@ namespace Alert_To_Care.Controllers
             {
                 return Ok(patient);
             }
-            return BadRequest();
+            return BadRequest("Patient not found!");
         }
 
         [HttpGet]
@@ -51,7 +47,7 @@ namespace Alert_To_Care.Controllers
             {
                 return Ok(patientInfo);
             }
-            return BadRequest();
+            return BadRequest("Patient not found OR Bed information for patient not found!");
         }
 
         //POST api/<PatientDataController>
@@ -64,7 +60,7 @@ namespace Alert_To_Care.Controllers
                 return Ok(result);
 
             }
-            return BadRequest();
+            return BadRequest("Patient cannot be added. Provide all details to add new patient!");
         }
 
         // DELETE api/<PatientDataController>/5
@@ -77,7 +73,7 @@ namespace Alert_To_Care.Controllers
                 var result = _patientdatabase.DischargePatient(id);
                 return Ok(result);
             }
-            return BadRequest();
+            return BadRequest("Delete operation failed. Patient does not exist!");
         }
 
 
@@ -93,7 +89,7 @@ namespace Alert_To_Care.Controllers
                     return Ok(result);
                 }
             }
-            return BadRequest(); 
+            return BadRequest("Update operation failed. Patient does not exist!"); 
         }
         
     }

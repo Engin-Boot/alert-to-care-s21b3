@@ -36,7 +36,7 @@ namespace AlertToCare_Tests.Controllers
         {
             VitalDataController controller = new VitalDataController(_vitalOperations);
             var response = controller.Post(null);
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -49,7 +49,7 @@ namespace AlertToCare_Tests.Controllers
                 Bpm = 60,
             };
             var response = controller.Post(vital);
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -62,7 +62,7 @@ namespace AlertToCare_Tests.Controllers
                 Spo2 = 55,
             };
             var response = controller.Post(vital);
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -75,7 +75,7 @@ namespace AlertToCare_Tests.Controllers
                 RespRate = 70,
             };
             var response = controller.Post(vital);
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -109,7 +109,7 @@ namespace AlertToCare_Tests.Controllers
         {
             VitalDataController controller = new VitalDataController(_vitalOperations);
             var response = controller.Get("99");
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -133,7 +133,7 @@ namespace AlertToCare_Tests.Controllers
         {
             VitalDataController controller = new VitalDataController(_vitalOperations);
             var response = controller.CheckVitalAndAlert("100");
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -155,7 +155,7 @@ namespace AlertToCare_Tests.Controllers
         {
             VitalDataController controller = new VitalDataController(_vitalOperations);
             var response = controller.Delete("88");
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }
@@ -192,7 +192,7 @@ namespace AlertToCare_Tests.Controllers
                 RespRate = 70f
             };
             var response = controller.Put("1000", changes);
-            var responseObject = response as BadRequestResult;
+            var responseObject = response as BadRequestObjectResult;
             Assert.NotNull(responseObject);
             Assert.Equal(400, responseObject.StatusCode);
         }

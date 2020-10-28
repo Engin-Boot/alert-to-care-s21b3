@@ -1,17 +1,18 @@
-﻿//using System.Data.Entity;
-using Alert_To_Care.Models;
+﻿using Alert_To_Care.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Alert_To_Care.Repository
 {
+    [ExcludeFromCodeCoverage]
     public class Database : DbContext
     {
         public Database(DbContextOptions<Database> options) : base(options)
         { }
-        public DbSet<PatientDataModel> Patients { get; }
-        public DbSet<BedDataModel> Beds { get; }
-        public DbSet<IcuDataModel> Icu { get; }
-        public DbSet<VitalsDataModel> Vitals { get; }
+        public DbSet<PatientDataModel> Patients { get; set; }
+        public DbSet<BedDataModel> Beds { get; set; }
+        public DbSet<IcuDataModel> Icu { get; set; }
+        public DbSet<VitalsDataModel> Vitals { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

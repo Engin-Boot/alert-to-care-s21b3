@@ -24,11 +24,8 @@ namespace Alert_To_Care.Controllers
         public IActionResult Get()
         {
             IEnumerable<IcuDataModel> result = _icudatabase.GetAllIcu();
-            if ( result != null)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
+            
+            return Ok(result);
         }
 
         // GET api/<IcuDataController>/5
@@ -40,7 +37,7 @@ namespace Alert_To_Care.Controllers
             {
                 return Ok(icu);
             }
-            return BadRequest();
+            return BadRequest("Icu not found!");
         }
 
         [HttpGet]
@@ -54,7 +51,7 @@ namespace Alert_To_Care.Controllers
                 return Ok(layout);
 
             }
-            return BadRequest();
+            return BadRequest("Icu does not exist!");
         }
 
         [HttpGet]
@@ -67,7 +64,7 @@ namespace Alert_To_Care.Controllers
                 int bedNo = icu.TotalNoOfBeds;
                 return Ok(bedNo);
             }
-            return BadRequest();
+            return BadRequest("Icu does not exist!");
         }
         
 
@@ -81,7 +78,7 @@ namespace Alert_To_Care.Controllers
                 return Ok(result);
             }
                 
-            return BadRequest();
+            return BadRequest("Icu already exists!");
         }
 
         // DELETE api/<IcuDataController>/5
@@ -93,7 +90,7 @@ namespace Alert_To_Care.Controllers
             {
                 return Ok(result);
             }
-            return BadRequest();
+            return BadRequest("Icu does not exist!");
         }
 
 
@@ -110,7 +107,7 @@ namespace Alert_To_Care.Controllers
                     return Ok(result);
                 }
             }
-            return BadRequest();
+            return BadRequest("Icu does not exist");
             
         }
 

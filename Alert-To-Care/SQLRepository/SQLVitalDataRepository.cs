@@ -1,10 +1,12 @@
 ﻿using Alert_To_Care.Models;
 using Alert_To_Care.Repository;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Mail;
 
 namespace Alert_To_Care.SQLRepository
 {
+    [ExcludeFromCodeCoverage]
     public class SqlVitalDataRepository:IVitalDataRepository
     {
         private readonly Database _context;
@@ -134,21 +136,19 @@ namespace Alert_To_Care.SQLRepository
         public VitalsDataModel UpdatePatientVitals(VitalsDataModel patientvital)
         {
             string id = patientvital.PatientId;
-            if (_context.Vitals.Find(id) != null)
+            if (_context.Vitals.Find(id) == null)
             {
-                VitalsDataModel vital = _context.Vitals.Find(id);
-                if (vital != null)
-                {
-                    vital.PatientBedId = patientvital.PatientBedId;
-                    vital.RespRate = patientvital.RespRate;
-                    vital.Spo2 = patientvital.Spo2;
-                    vital.Bpm = patientvital.Bpm;
-                    _context.SaveChanges();
-                    return vital;
-                }
                 return null;
             }
-            return null;
+            VitalsDataModel vital = _context.Vitals.Find(id);
+            
+            vital.PatientBedId = patientvital.PatientBedId;
+            vital.RespRate = patientvital.RespRate;
+            vital.Spo2 = patientvital.Spo2;
+            vital.Bpm = patientvital.Bpm;
+            _context.SaveChanges();
+            
+            return vital;   
         }
     }
 }
