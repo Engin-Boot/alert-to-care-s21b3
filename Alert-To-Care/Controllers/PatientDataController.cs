@@ -54,17 +54,18 @@ namespace Alert_To_Care.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] PatientDataModel patient)
         {
+            if (patient == null)
+            {
+                return BadRequest("Patient cannot be added. Provide all details to add new patient!");
+            }
+
             if (_patientdatabase.GetPatientInfoFromId(patient.PatientId) != null)
             {
                 return BadRequest("Patient already exists");
             }
-            if (patient != null)
-            {
-                var result = _patientdatabase.NewPatientAdd(patient);
-                return Ok(result);
-
-            }
-            return BadRequest("Patient cannot be added. Provide all details to add new patient!");
+            
+            var result = _patientdatabase.NewPatientAdd(patient);
+            return Ok(result);
         }
 
         // DELETE api/<PatientDataController>/5

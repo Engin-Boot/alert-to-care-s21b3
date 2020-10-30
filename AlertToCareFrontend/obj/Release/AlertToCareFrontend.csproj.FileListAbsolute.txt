@@ -1,3 +1,10 @@
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\AlertToCareFrontend.exe.config
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\AlertToCareFrontend.exe
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\AlertToCareFrontend.pdb
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\Newtonsoft.Json.dll
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\Newtonsoft.Json.xml
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\System.Net.Http.Formatting.xml
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\AlertToCareFrontend.csprojAssemblyReference.cache
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\MainWindow.baml
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\Resources\styles\BedStyles.baml
@@ -17,13 +24,6 @@ C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToC
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\GeneratedInternalTypeHelper.g.cs
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\AlertToCareFrontend_MarkupCompile.cache
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\AlertToCareFrontend_MarkupCompile.lref
-C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\AlertToCareFrontend.exe.config
-C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\AlertToCareFrontend.exe
-C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\AlertToCareFrontend.pdb
-C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\Newtonsoft.Json.dll
-C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\System.Net.Http.Formatting.dll
-C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\Newtonsoft.Json.xml
-C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\bin\Release\System.Net.Http.Formatting.xml
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\Views\AdmitPatientPage.baml
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\Views\BedView.baml
 C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\AlertToCareFrontend\obj\Release\Views\ConfigurationPage.baml

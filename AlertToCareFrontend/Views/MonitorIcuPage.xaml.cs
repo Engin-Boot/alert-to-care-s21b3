@@ -82,20 +82,36 @@ namespace AlertToCareFrontend.Views
         {
             BedView bed = new BedView(bedDataModel);
 
-            if (bedNum <= totalNumOfBeds / 2)
+            if (layout.Equals("Parallel"))
             {
-                LeftStackPanel.Children.Add(bed);
+                PositionBedForParallelLayout(bed, bedNum, totalNumOfBeds);
             }
             else
             {
-                if (layout.Equals("Parallel"))
-                {
-                    RightStackPanel.Children.Add(bed);
-                }
-                else
-                {
-                    BottomStackPanel.Children.Add(bed);
-                }
+                PositionBedForLShapeLayout(bed, bedNum, totalNumOfBeds);
+            }
+        }
+
+        private void PositionBedForLShapeLayout(BedView bedView, int bedNum, int totalNumOfBeds)
+        {
+            if (bedNum <= totalNumOfBeds / 2)
+            {
+                LeftStackPanel.Children.Add(bedView);
+            }
+            else
+            {
+                BottomStackPanel.Children.Add(bedView);
+            }
+        }
+        private void PositionBedForParallelLayout(BedView bedView, int bedNum, int totalNumOfBeds)
+        {
+            if (bedNum <= totalNumOfBeds / 2)
+            {
+                LeftStackPanel.Children.Add(bedView);
+            }
+            else
+            {
+                RightStackPanel.Children.Add(bedView);
             }
         }
 

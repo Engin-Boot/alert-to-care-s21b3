@@ -16,7 +16,7 @@ namespace AlertToCare_Tests.Controllers
             PatientDataController controller = new PatientDataController(_patientDataOperations);
             PatientDataModel patient = new PatientDataModel()
             {
-                PatientId = "3",
+                PatientId = "33",
                 PatientName = "Harsh",
                 PatientAge = 38,
                 BedId = "24",
