@@ -54,7 +54,11 @@ namespace Alert_To_Care.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] PatientDataModel patient)
         {
-            if(patient != null)
+            if (_patientdatabase.GetPatientInfoFromId(patient.PatientId) != null)
+            {
+                return BadRequest("Patient already exists");
+            }
+            if (patient != null)
             {
                 var result = _patientdatabase.NewPatientAdd(patient);
                 return Ok(result);

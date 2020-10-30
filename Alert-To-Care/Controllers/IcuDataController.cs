@@ -72,13 +72,18 @@ namespace Alert_To_Care.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] IcuDataModel icu)
         {
+            if(_icudatabase.GetIcuDetailsById(icu.IcuId)!=null)
+            {
+                return BadRequest("Icu already exists");
+            }
+
             var result = _icudatabase.AddIcu(icu);
             if(result != null)
             {
-                return Ok(result);
+                return Ok("Icu added successfully");
             }
                 
-            return BadRequest("Icu already exists!");
+            return BadRequest("One or more Icu details are not valid!");
         }
 
         // DELETE api/<IcuDataController>/5

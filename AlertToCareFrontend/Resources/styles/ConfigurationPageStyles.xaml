@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="LabelStyle" TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="HeadingStyle" TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="Width" Value="250"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Margin" Value="20"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="TextboxStyle" TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+        <Style.Setters>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="StandardButtonStyle" TargetType="Button">
+        <Style.Setters>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Background" Value="CornflowerBlue"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="BorderBrush" Value="CornflowerBlue"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+        </Style.Setters>
+    </Style>
+    <Style x:Key="ErrorFeedbackStyle" BasedOn="{StaticResource ResourceKey=TextboxStyle}" TargetType="TextBox">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="Validation.ErrorTemplate">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <AdornedElementPlaceholder x:Name="controlHolder"></AdornedElementPlaceholder>
+                                    <TextBlock VerticalAlignment="Center" Foreground="Red" Text="{Binding ElementName=controlHolder,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"></TextBlock>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
