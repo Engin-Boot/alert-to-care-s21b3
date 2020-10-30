@@ -1,0 +1,20 @@
+﻿Alert-To-Care-Frontend
+1.0.0.0
+
+winexe
+C#
+.cs
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\Alert-To-Care-Frontend\obj\Release\netcoreapp3.1\
+Alert_To_Care_Frontend
+none
+false
+TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1
+C:\Users\Tripti Saini\philips\bootcamp\case-study-2\alert-to-care-s21b3\Alert-To-Care-Frontend\App.xaml
+10940195051
+
+331962424815
+195-1275131824
+MainWindow.xaml;Resources\styles\BedStyles.xaml;Resources\styles\ConfigurationPageStyles.xaml;Resources\styles\MainWindowStyles.xaml;Views\AdmitPatientPage.xaml;Views\BedView.xaml;Views\ConfigurationPage.xaml;Views\HomePage.xaml;Views\MonitorIcuPage.xaml;Views\UpdateVitalsPage.xaml;
+
+False
+

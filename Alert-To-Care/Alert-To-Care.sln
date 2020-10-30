@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlertToCare-Tests", "..\Ale
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlertToCare-AutomatedTests", "..\AlertToCare-AutomatedTests\AlertToCare-AutomatedTests.csproj", "{BFB0F823-4852-41A5-933B-5BCB69E5401B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertToCareFrontend", "..\AlertToCareFrontend\AlertToCareFrontend.csproj", "{F3BD7350-6B56-493A-9715-B719AD49E394}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alert-To-Care-Frontend", "..\Alert-To-Care-Frontend\Alert-To-Care-Frontend.csproj", "{1B261CED-4804-4545-8AFE-6160FECAEE30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{BFB0F823-4852-41A5-933B-5BCB69E5401B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFB0F823-4852-41A5-933B-5BCB69E5401B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFB0F823-4852-41A5-933B-5BCB69E5401B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3BD7350-6B56-493A-9715-B719AD49E394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3BD7350-6B56-493A-9715-B719AD49E394}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3BD7350-6B56-493A-9715-B719AD49E394}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3BD7350-6B56-493A-9715-B719AD49E394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B261CED-4804-4545-8AFE-6160FECAEE30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B261CED-4804-4545-8AFE-6160FECAEE30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B261CED-4804-4545-8AFE-6160FECAEE30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B261CED-4804-4545-8AFE-6160FECAEE30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\AdmitPatientPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\BedView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ConfigurationPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\HomePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MonitorIcuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UpdateVitalsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\styles\BedStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\styles\ConfigurationPageStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\styles\MainWindowStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AdmitPatientPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\BedView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ConfigurationPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MonitorIcuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UpdateVitalsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
